@@ -19,6 +19,8 @@ function AddStack(keys)
 	DataCounter.ChoGathStackAbility=dummyab	
 	end
 	
+	print(caster:GetModelScale())
+	
 	local abilite=caster:FindAbilityByName(dummyab)
 	abilite:SetLevel(DataCounter.ChoGathStacks)		
 end
@@ -50,14 +52,18 @@ function RemoveStack(keys)
 	
 	local dummyab = "greenterror_HP" .. tostring(level)
 	
+	if DataCounter.ChoGathStacks~=0 then
+	
 	if DataCounter.ChoGathStackAbility~=dummyab then
 	caster:RemoveAbility(DataCounter.ChoGathStackAbility)
 	caster:RemoveModifierByName("modifier_feast_bonus")
 	caster:AddAbility(dummyab)	
 	DataCounter.ChoGathStackAbility=dummyab	
 	end
-	
+		
 	local abilite=caster:FindAbilityByName(dummyab)
 	abilite:SetLevel(DataCounter.ChoGathStacks)		
+	
+	end
 	
 end

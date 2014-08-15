@@ -28,6 +28,6 @@
 		"Ability2"					"jester_trap"		// Ability 2
 		"Ability3"					"jester_shiv"
 		"Ability4"					"greenterror_passive"
-		"Ability5"					"greenterror_bite"
+		"Ability5"					"jester_clone"
 	}
 }

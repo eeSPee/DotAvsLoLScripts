@@ -24,7 +24,7 @@
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_rupture"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -187,7 +187,7 @@
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_scream"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -377,7 +377,7 @@
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_bite"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -396,15 +396,7 @@
 		
 		"OnSpellStart"
 		{
-		 "ActOnTargets"
-				{
-					"Target"
-							{
-								"Center" "POINT"
-								"Radius" "1"
-								"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-								"Types" "DOTA_UNIT_TARGET_HERO"
-							}
+							
 					"ApplyModifier"
 					{
 					"ModifierName" "greenterror_feast_invisible"
@@ -416,30 +408,8 @@
 						"Target"				"TARGET"
 						"Type"					"DAMAGE_TYPE_PURE"
 						"Damage"				"%damage"
-					}	
-				}	
-		"ActOnTargets"
-				{
-					"Target"
-							{
-								"Center" "POINT"
-								"Radius" "1"
-								"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-								"Types" "DOTA_UNIT_TARGET_BASIC"
-							}
-					"ApplyModifier"
-					{
-					"ModifierName" "greenterror_feast_invisible"
-					"Target"	   "TARGET"	
-					"Duration"		"0.1"
-					}
-					"Damage"
-					{
-						"Target"				"TARGET"
-						"Type"					"DAMAGE_TYPE_PURE"
-						"Damage"				"%creepdamage"
-					}	
-				}	
+					}		
+					
 				
 		}
 
@@ -552,11 +522,13 @@
 						"Target"	"CASTER"
 						"HealAmount"	"%heal"
 					}
-					"GiveMana"
+					"RunScript"
 					{
-						"Target"	"CASTER"
-						"ManaAmount"	"%mana"
-					}
+						"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+						"Function"				"RestoreMana"
+						"Target"				"CASTER"
+						"mana"					"%mana"
+					}	
 				}
 			}			
 
@@ -813,7 +785,7 @@
 		"AbilityName"					"jester_blink"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"AbilityTextureName"			"queenofpain_sonic_wave"
+		"AbilityTextureName"			"riki_blink_strike"
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"jester_blink"
@@ -843,6 +815,7 @@
 			{
 				"ScriptFile"			"scripts/vscripts/abilities/general.lua"
 				"Function"				"BlinkToPoint"
+				"Target"				"POINT"
 			}
 			"ApplyModifier"
 			{
@@ -858,9 +831,13 @@
 			 "EffectName" "jester_invizability"
 			 "Properties"
 				 {
-				   "MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY" "1000000"
+				   "MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY" "1"
 				 }	
-				OnAttackLanded"
+				 "States"
+				 {
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				 }
+				"OnAttackStart"
 				{
 					
 							"ApplyModifier"
@@ -868,11 +845,20 @@
 								"Target" "CASTER"
 								"ModifierName" "jester_crit"
 							}	
-				}			 
+				}	
+				"OnDealDamage"				
+				{					
+					"RemoveModifier"
+					{
+						"ModifierName"		"jester_invizability"
+						"Target"			"CASTER"	
+					}
+				}
 			}
 		
 		"jester_crit"
-			{
+			{	
+				"IsHidden"	 "1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "%crit_bonus"
@@ -890,7 +876,7 @@
 					{
 						"ModifierName"		"jester_crit"
 						"Target"			"CASTER"	
-					}	
+					}
 					"RemoveModifier"
 					{
 						"ModifierName"		"jester_invizability"
@@ -910,7 +896,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"crit_bonus" "110 120 130 140"
+					"crit_bonus" "1010 1200 1300 1400"
 				}
 			}				
 	}
@@ -926,7 +912,7 @@
 		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"ability_datadriven"
 		"AbilityName"					"jester_shiv"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_UNIT_ORDER_CAST_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
@@ -951,10 +937,9 @@
 		{
 			"TrackingProjectile"
 			{
-				 "EffectName"	"particles/units/heroes/hero_queenofpain/queenofpain_shadow_strike"
-				 "Dodgeable" "0"
-				 "ProvidesVision"  "0"
-				 "MoveSpeed" "600"
+					"Target" "TARGET"
+					"MoveSpeed" "600"
+					"EffectName"	"particles/units/heroes/hero_queenofpain/queenofpain_shadow_strike"				
 			}		
 			"RemoveModifier"
 			{
@@ -968,12 +953,13 @@
 				"Duration"				"%Cool"
 			}
 		}
-		"OnProjectileHit"
-		{
+		"OnProjectileHitUnit"
+		{		
 			"ApplyModifier"
 			{
 				"Target"				"TARGET"
 				"ModifierName"			"modifier_shiv_slow"
+				"Duration"				"%durationdagger"
 			}		
 			"Damage"
 				{
@@ -1003,6 +989,7 @@
 				}
 			"modifier_shiv_cooldown"
 				{
+				"IsHidden"	 "1"
 					"OnDestroy"
 					{
 						"ApplyModifier"
@@ -1030,7 +1017,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"duration" "5.0"
+					"duration" "2.0"
 				}
 				"02"
 				{
@@ -1041,6 +1028,17 @@
 				{
 					"var_type"				"FIELD_FLOAT"
 					"move_slow" "-20 -30 -40 -50"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"Cool" "13"
+				}
+				
+				"05"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"durationdagger" "3.0"
 				}
 			}				
 	}
@@ -1085,20 +1083,14 @@
 		{
 			"SpawnUnit"
 			{
-				"UnitName"			"npc_dota_shadowshaman_serpentward"
+				"UnitName"			"LoL_unit_JitB"
 				"UnitCount"			"1"
-				"SpawnRadius"		"100"
+				"SpawnRadius"		"1"
 				"GrantsGold"			"1"
 				"GrantsXP"				"0"
 				"Target" 			"POINT"
 				"OnSpawn"
 				{	
-					 //"Delay" "%stealthetime"
-					"ApplyModifier"
-					{
-						"Target"		"TARGET"
-						"ModifierName"  "modifier_JitB"
-					}
 					"ApplyModifier"
 					{
 						"Target"		"TARGET"
@@ -1110,62 +1102,25 @@
 		}
 		"Modifiers"
 		{
-			"modifier_JitB"
-			{
-				"ThinkInterval"		"0.3"
-				"Duration"		"-1"
-				"IsHidden"	 "1"
-				
-				"Properties"
-				 {
-				   "MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY" "1"
-				 }
-				
-				"OnIntervalThink"
-				{
-					 "ActOnTargets"
-					{
-						"Target"
-						{
-							"Center" "POINT"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"Action"
-						{
-							
-							"Stun"
-							{
-								"Target"				"TARGET"
-								"Duration"					"%stunduration"
-							}						
-							"RemoveModifier"
-							{
-								"Target"				"CASTER"
-								"ModifierName"			"modifier_JitB"
-							}
-						}
-					}
-				}
-			}
+			
 			"modifier_JitB_life"
 			{
-			
-				 "EffectName" "generic_slowed"				 
-				"IsHidden"	 "1"
 				 "Properties"
 				 {
 				   "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%JitBdamage"
-				 }			
+				 }		
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
 				"OnDestroy"
 				{
-					"Execute"
+					"RemoveUnit"
 					{
-						"Target"	"TARGET"
+						"Target"				"TARGET"
 					}
 				}
-			}			
+			}	
 		}
 		
 		"AbilitySpecial"
@@ -1180,20 +1135,176 @@
 					"var_type"				"FIELD_FLOAT"
 					"JitBdamage" "110 120 130 140"
 				}
+			}				
+	}
+	
+	"JitB_TempLife"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9903"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"JitB_TempLife"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
+		"AbilityTextureName" 			"nyx_assassin_vendetta"
+			
+		"Modifiers"
+		{
+			
+			"modifier_JitB_Passive"
+			{		
+				"Passive" "1"			
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"  "modifier_JitB_cloak"
+						"Duration"		"%stealthetime"
+					}
+				}
+			}
+				
+			"modifier_JitB_cloak"
+			{	
+				 "States"
+				 {
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				 }
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"  "modifier_JitB_invisible"
+						"Duration"		"-1"
+					}
+				}
+			}
+			"modifier_JitB_invisible"
+			{				
+								 
+				"OnAttackStart"
+				{				
+							"ApplyModifier"
+							{
+								"Target"				"CASTER"
+								"ModifierName"			"modifier_JitB_temp"
+								"Duration"				"%JitBLife"
+							}		
+							"RemoveModifier"
+							{
+								"Target"				"CASTER"
+								"ModifierName"			"modifier_JitB_invisible"
+							}
+							"Stun"
+							{
+								"Target"
+								{
+									"Center" "CASTER"
+									"Radius" "%radius"
+									"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+								}
+								"Duration"				"%fearduration"																								
+							}	
+				}
+				"States"
+				 {
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				 }
+			}
+			"modifier_JitB_temp"
+			{				 
+				"OnDestroy"
+				{
+					"RemoveUnit"
+					{
+						"Target"				"CASTER"
+					}
+				}
+			}
+							
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"fearduration" "2.0"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "600"
+				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"stunduration" "2"
+					"stealthetime" "0.3"
 				}
 				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"radius" "400"
+					"JitBLife" "10"
 				}
-				"05"
+			}	
+				
+	}
+	
+	"jester_clone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"jester_shiv"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"riki_permanent_invisibility"
+		"AbilitySharedCooldown"			"jester_clone"
+		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"   			"0"		
+				
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"		"CASTER"
+				"UnitName"			"CASTER"
+				"UnitCount"			"1"
+				"SpawnRadius"		"1"
+				"GrantsGold"			"0"
+				"GrantsXP"				"0"
+			}
+		}
+		"Modifiers"
+		{
+			
+		}
+		
+		
+		"AbilitySpecial"
+			{
+				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"stealthetime" "0.3"
+					"duration" "2.0"
 				}
 			}				
 	}
