@@ -17,17 +17,17 @@
 		"Ability3"					"greenterror_spikes"
 		"Ability4"					"greenterror_passive"
 		"Ability5"					"greenterror_bite"
+		"Ability6"					"attribute_bonus"
 	}
 	"npc_dota_hero_shaco"
 	{
-		//"BaseClass"				"npc_dota_hero_nyx_assassin"
-		//"HeroID"				"1"
 		"override_hero"				"npc_dota_hero_riki"
 		"AbilityLayout" 		"5"
 		"Ability1"					"jester_blink"		// Ability 1
 		"Ability2"					"jester_trap"		// Ability 2
 		"Ability3"					"jester_shiv"
-		"Ability4"					"greenterror_passive"
+		"Ability4"					"jester_passive"
 		"Ability5"					"jester_clone"
+		"Ability6"					"attribute_bonus"
 	}
 }

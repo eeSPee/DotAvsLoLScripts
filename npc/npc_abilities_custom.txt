@@ -87,7 +87,6 @@
 								"Target"				"TARGET"
 								"ModifierName"			"rupture_slow"
 								"Duration"					"%slowduration"
-								"TargetAppliesModifier"		"1"
 							}
 							"Knockback"
 							{
@@ -147,7 +146,7 @@
 				}
 				"03"
 				{
-					"var_type"				"FIELD_INTEGER"
+					"var_type"				"FIELD_FLOAT"
 					"radius"		"200"
 				}				
 				"01"
@@ -403,14 +402,23 @@
 					"Target"	   "TARGET"	
 					"Duration"		"0.1"
 					}
-					"Damage"
+					"RunScript"
 					{
+						"ScriptFile"			"scripts/vscripts/abilities/chogath.lua"
+						"Function"				"DamageTarget"
 						"Target"				"TARGET"
-						"Type"					"DAMAGE_TYPE_PURE"
-						"Damage"				"%damage"
-					}		
+					}	
 					
 				
+		}
+		
+		"OnUpgrade"
+		{
+			"RunScript"
+				{
+					"ScriptFile"			"scripts/vscripts/abilities/chogath.lua"
+					"Function"				"UpdateStack"
+				}
 		}
 
 			"OnOwnerDied"
@@ -1262,6 +1270,7 @@
 		"AbilityName"					"jester_shiv"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityTextureName"			"riki_permanent_invisibility"
@@ -1283,15 +1292,12 @@
 				
 		"OnSpellStart"
 		{
-			"SpawnUnit"
-			{
-				"Target"		"CASTER"
-				"UnitName"			"CASTER"
-				"UnitCount"			"1"
-				"SpawnRadius"		"1"
-				"GrantsGold"			"0"
-				"GrantsXP"				"0"
-			}
+			"RunScript"
+				{
+					"ScriptFile"			"scripts/vscripts/abilities/shaco.lua"
+					"Function"				"MakeClone"
+					"Target"				"CASTER"`
+				}
 		}
 		"Modifiers"
 		{
@@ -1308,4 +1314,169 @@
 				}
 			}				
 	}
+	
+	"jester_isclone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9904"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"jester_isclone"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityTextureName" 			"nyx_assassin_vendetta"
+			
+		"Modifiers"
+		{
+			
+			"modifier_JitB_Passive"
+			{		
+				"Passive" "1"			
+				"IsHidden" "1"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"  "modifier_clonelife"
+						"Duration"		"%duration"
+					}
+				}
+			}
+				
+			"modifier_clonelife"
+			{	
+				 "States"
+				 {
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				 }
+				 "Properties"
+				 {
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damageincomming"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%damageoutgoing"
+					"MODIFIER_PROPERTY_IS_ILLUSION"	"1"
+				 }
+				 "OnDeath"
+				 {
+					"RemoveModifier"
+					{
+						"Target"		"CASTER"
+						"ModifierName"  "modifier_clonelife"
+					}
+				 }
+				"OnDestroy"
+				{
+					"RemoveUnit"
+					{
+						"Target"				"CASTER"
+					}
+					"Damage"
+					{
+						"Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Type"					"DAMAGE_TYPE_MAGICAL"
+						"Damage"				"%damage"
+					}
+				}
+			}
+										
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration" "20.0"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "200 300 400"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"damageincomming" "25"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"damageoutgoing" "-50"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "300"
+				}
+			}	
+				
+	}
+	"jester_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9007"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"jester_passive"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
+		"AbilityTextureName" 			"riki_backstab"
+		"MaxLevel"                      "1"
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+			"particlefile"				"particles/units/heroes/hero_dragon_knight.pcf"
+		}	
+			
+		"Modifiers"
+		{
+			"greenterror_passive_tag"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/abilities/shaco.lua"
+						"Function"				"BackStab"
+						"Target"				"TARGET"
+					}
+				}
+			}			
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damagemult" "20"					
+				}
+			}
+				
+	}
+	
 }
