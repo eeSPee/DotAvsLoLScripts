@@ -30,4 +30,15 @@
 		"Ability5"					"jester_clone"
 		"Ability6"					"attribute_bonus"
 	}
+	"npc_dota_hero_amumu"
+	{
+		"override_hero"				"npc_dota_hero_dark_seer"
+		"AbilityLayout" 		"5"
+		"Ability1"					"mumu_Web"		// Ability 1
+		"Ability2"					"amumu_cry"		// Ability 2
+		"Ability3"					"amumu_tantrum"
+		"Ability4"					"mumu_passive"
+		"Ability5"					"amumu_curse"
+		"Ability6"					"attribute_bonus"
+	}
 }

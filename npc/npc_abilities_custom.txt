@@ -41,6 +41,12 @@
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
+		
+		"precache" 
+			{ 
+			"particle_folder"				"particles/units/heroes/hero_leshrac" 
+			} 
+		
 		 "OnSpellStart"
 		 {
 		   "CreateThinker"
@@ -376,7 +382,7 @@
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_bite"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -402,13 +408,12 @@
 					"Target"	   "TARGET"	
 					"Duration"		"0.1"
 					}
-					"RunScript"
+					"Damage"
 					{
-						"ScriptFile"			"scripts/vscripts/abilities/chogath.lua"
-						"Function"				"DamageTarget"
-						"Target"				"TARGET"
-					}	
-					
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_PURE"
+					"Damage"				"%damage"
+					}					
 				
 		}
 		
@@ -421,7 +426,7 @@
 				}
 		}
 
-			"OnOwnerDied"
+			"OnOwnerSpawned"
 			{
 				"RunScript"
 				{
@@ -520,11 +525,6 @@
 				
 				"OnKill"
 				{
-					"ApplyModifier"
-					{
-						"Target"				"CASTER"
-						"ModifierName"			"greenterror_passive_regen"
-					}
 					"Heal"
 					{
 						"Target"	"CASTER"
@@ -1266,13 +1266,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		
 		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"naga_siren_mirror_image"
 		"AbilityName"					"jester_shiv"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityTextureName"			"riki_permanent_invisibility"
 		"AbilitySharedCooldown"			"jester_clone"
 		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
@@ -1292,27 +1290,64 @@
 				
 		"OnSpellStart"
 		{
-			"RunScript"
+			"ApplyModifier"
 				{
-					"ScriptFile"			"scripts/vscripts/abilities/shaco.lua"
-					"Function"				"MakeClone"
-					"Target"				"CASTER"`
+					"Modifier"				"modifier_clone"
+					"Target"				"CASTER"
+					"Duration"				"0.5"		//to be higher than invuln_duration
 				}
 		}
 		"Modifiers"
 		{
-			
+			"modifier_clone"
+				{
+					"IsHidden"	 "1"
+					"OnDestroy"
+					{
+						"RunScript"
+						{
+							"ScriptFile"			"scripts/vscripts/abilities/shaco.lua"
+							"Function"				"MakeClone"
+						}
+					}
+					
+				}
 		}
 		
 		
 		"AbilitySpecial"
+		{
+			"01"
 			{
-				"01"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"duration" "2.0"
-				}
-			}				
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage"			"-50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"125"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"images_count"				"1"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"invuln_duration"			"0.3"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage_tooltip"	"50"
+			}
+		}			
 	}
 	
 	"jester_isclone"
@@ -1322,7 +1357,7 @@
 		"ID"							"9904"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"ability_datadriven"
 		"AbilityName"					"jester_isclone"		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
 		"AbilityTextureName" 			"nyx_assassin_vendetta"
 			
 		"Modifiers"
@@ -1344,32 +1379,14 @@
 			}
 				
 			"modifier_clonelife"
-			{	
-				 "States"
-				 {
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
-				 }
-				 "Properties"
-				 {
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damageincomming"
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%damageoutgoing"
-					"MODIFIER_PROPERTY_IS_ILLUSION"	"1"
-				 }
+			{			
+				"IsHidden" "1"
 				 "OnDeath"
 				 {
 					"RemoveModifier"
 					{
 						"Target"		"CASTER"
 						"ModifierName"  "modifier_clonelife"
-					}
-				 }
-				"OnDestroy"
-				{
-					"RemoveUnit"
-					{
-						"Target"				"CASTER"
 					}
 					"Damage"
 					{
@@ -1382,6 +1399,13 @@
 						}
 						"Type"					"DAMAGE_TYPE_MAGICAL"
 						"Damage"				"%damage"
+					}
+				 }
+				"OnDestroy"
+				{
+					"RemoveUnit"
+					{
+						"Target"				"CASTER"
 					}
 				}
 			}
@@ -1400,16 +1424,6 @@
 					"damage" "200 300 400"
 				}
 				"03"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"damageincomming" "25"
-				}
-				"04"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"damageoutgoing" "-50"
-				}
-				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"radius" "300"
@@ -1479,4 +1493,514 @@
 				
 	}
 	
+	//=================================================================================================================
+	// cry
+	//=================================================================================================================
+	
+	"amumu_cry"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9008"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"amumu_cry"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"		
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName" "damageaura"
+				"Target"	   "CASTER"	
+			}
+		}
+		
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName" "damageaura"
+				"Target"	   "CASTER"	
+			}
+		}
+			
+		"Modifiers"
+		{
+			"damageaura"
+			{
+				"IsHidden"	 "1"
+				"ThinkInterval" "%damage_rate"
+				"OnIntervalThink"
+				{
+					 "ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"				"TARGET"
+								"Type"					"DAMAGE_TYPE_MAGICAL"
+								"Damage"				"%damagebase"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/mumu.lua"
+								"Function"				"DamagePerLife"
+								"Target"				"TARGET"
+								"Scale"					"%Scale"
+							}
+						}
+					}
+					"SpendMana"
+					{
+						"Mana"				"%AbilityManaCost"
+					}
+				}
+			}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage_rate" "1.0"
+					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "300"
+					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damagebase" "10 15 20 25"
+					
+				}
+				"04"
+				{
+					"Scale"				"FIELD_FLOAT"
+					"damagemult" "1.5 1.9 2.3 2.7"
+					
+				}
+				"05"
+				{
+					"Scale"				"FIELD_FLOAT"
+					"AbilityManaCost" "8"
+					
+				}
+			}
+				
+	}
+	
+	//=================================================================================================================
+	// tantrum
+	//=================================================================================================================
+	
+	"amumu_tantrum"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9009"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"amumu_tantrum"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9 8 7 6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		"OnSpellStart"
+		{
+			 "ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"				"TARGET"
+								"Type"					"DAMAGE_TYPE_MAGICAL"
+								"Damage"				"%damagebase"
+							}
+						}
+				
+				}
+		}
+			
+		"Modifiers"
+		{
+			"cooldownanddamagereduction"
+			{
+				"Passive"	"1"
+				"Properties"
+				 {
+				   "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%block"
+				 }	
+				 "OnAttacked"
+				 {
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/mumu.lua"
+								"Function"				"ReduceCooldown"
+							}				 				 
+				 }
+			}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"cdreduction" "0.5"
+					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "200"
+					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damagebase" "60 90 120 150"
+					
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"block" "3 6 9 12"
+					
+				}
+			}
+				
+	}
+	
+	//=================================================================================================================
+	// Curse of the Sad Mummy
+	//=================================================================================================================
+	
+	"amumu_curse"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9010"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"amumu_curse"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 70 60"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200"
+		
+		"OnSpellStart"
+		{
+			 "ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName" "damagerootmodifier"
+								"Target"	   "TARGET"	
+								"Duration"	   "%dur"	
+							}
+						}
+				
+				}
+		}
+			
+		"Modifiers"
+		{
+			"damagerootmodifier"
+			{
+				"States"
+				 {
+				   "MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				   "MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+				 }	
+				"ThinkInterval" "1"
+				"OnIntervalThink"
+				{
+							"Damage"
+							{
+								"Target"				"TARGET"
+								"Type"					"DAMAGE_TYPE_MAGICAL"
+								"Damage"				"%damage"
+							}
+				}
+			}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dur" "2.0"
+					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "800"
+					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "75 125 175"
+					
+				}
+			}
+				
+	}
+	
+	//=================================================================================================================
+	// websling
+	//=================================================================================================================
+	"mumu_Web"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9011"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"greenterror_scream"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"queenofpain_sonic_wave"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"
+		"AbilitySharedCooldown"			"greenterror_scream"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.25"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"   			"0"		
+		
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{				
+				"MoveSpeed"			"2000"
+				"EffectName"			"particles/units/heroes/hero_queenofpain/queenofpain_scream_of_pain.vpcf"
+				"StartPosition"			"attach_attack1"
+				"FixedDistance"			"%distans"
+				"StartRadius"			"%pradius"
+				"EndRadius"				"%pradius"
+				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+			}			
+		}
+		"OnProjectileHitUnit"
+			{
+				"DeleteOnHit"				"1"
+				"Damage"
+				{
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_MAGICAL"
+					"Damage"				"%damage"
+				}
+				"Stun"
+				{
+					"Target"				"TARGET"
+					"Duration"				"%duration"
+				}
+				"RunScript"
+				{
+					"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+					"Function"				"BlinkToPoint"
+					"Target"				"PROJECTILE"
+				}
+			}
+		
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"distans" "1000"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"pradius" "100"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration" "1 2 3 4"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "100"
+				}
+			}				
+	}
+	
+	"mumu_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9012"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"greenterror_passive"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
+		"AbilityTextureName" 			"nevermore_necromastery"
+		"MaxLevel"                      "1"
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName" "greenterror_passive_tag"
+				"Target"	   "CASTER"	
+			}
+		}		
+			
+		"Modifiers"
+		{
+			"amumu_tag"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"Target"				"TARGET"
+						"ModifierName"			"magreg_redux"
+						"Duration"				"%dur"
+					}	
+				}
+			}
+			"amumu_cursed_touch"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%redux"
+				}
+			}			
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"redux" "-3 -4 -5"					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dur" "10"
+				}
+			}
+				
+	}
 }

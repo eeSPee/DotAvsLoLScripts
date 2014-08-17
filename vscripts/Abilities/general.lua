@@ -1,7 +1,8 @@
 function BlinkToPoint(keys)
 	local destination=keys.target_points[1]
 	local unit=keys.caster
-	unit:SetAbsOrigin(destination)
+	local pos=GetGroundPosition(destination,unit)
+	unit:SetAbsOrigin(pos)
 end
 
 function RestoreMana(keys)
@@ -20,9 +21,30 @@ function dealdamagebasedonabilitypower(keys,Scale)
 	local damageTable = {
 	victim = target,
 	attacker = caster,
-	Damage = AP*Scale,
+	damage  = AP*Scale,
 	damage_type = DAMAGE_TYPE_MAGIC,
 	}
+	ApplyDamage(damageTable)
+end
+
+function scrapelifebasedonabilitypowerHUNDREDS(keys,Scale)
+	local caster=keys.caster
+	local target = keys.target	
+	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
+	local AP = Data.AbilityPower or 0
+	
+	local varA=target:GetMaxHealth()/100
+	local varB=math.floor(AP/100)*Scale
+		
+	local DMJ = (varA)*varB	
+	
+	local damageTable = {
+	victim = target,
+	attacker = caster,
+	damage  = DMJ,
+	damage_type = DAMAGE_TYPE_MAGIC,
+	}
+	ApplyDamage(damageTable)
 end
 
 function updateAP(keys)

@@ -7,8 +7,6 @@ function AddStack(keys)
 		DataCounter.ChoGathStacks=DataCounter.ChoGathStacks+1
 	end
 	
-	if DataCounter.ChoGathStacks~=0 then
-	
 	local ability = keys.ability
 	local level = ability:GetLevel()
 	
@@ -26,7 +24,6 @@ function AddStack(keys)
 	
 	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",level))/100
 	caster:SetModelScale(scale)	
-	end
 end
 
 function RemoveStack(keys)
@@ -103,28 +100,5 @@ function UpdateStack(keys)
 	
 	end
 	
-end
-
-function DamageTarget(keys)
-	local caster=keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	
-	local damageTable = {
-	victim = target,
-	attacker = caster,
-	Damage = ability:GetLevelSpecialValueFor("damage",ability:GetLevel()),
-	damage_type = DAMAGE_TYPE_PURE,
-	damage_flags	=	DOTA_UNIT_TARGET_HERO,
-	}
-	ApplyDamage(damageTable)
-	damageTable = {
-	victim = target,
-	attacker = caster,
-	Damage = ability:GetLevelSpecialValueFor("creepdamage",ability:GetLevel()),
-	damage_type = DAMAGE_TYPE_PURE,
-	damage_flags	=	DOTA_UNIT_TARGET_BASIC,
-	}
-	ApplyDamage(damageTable)
 end
 
