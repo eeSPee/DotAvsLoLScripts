@@ -22,53 +22,39 @@ function AddStack(keys)
 	local abilite=caster:FindAbilityByName(dummyab)
 	abilite:SetLevel(DataCounter.ChoGathStacks)	
 	
-	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",level))/100
+	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",DataCounter.ChoGathStacks))/100
 	caster:SetModelScale(scale)	
 end
 
-function RemoveStack(keys)
+function RemoveStacks(keys)
 	local caster=keys.caster
 	local playerowner = caster.GetPlayerOwner(caster)
 	local DataCounter = GameData:For("DataCounter",playerowner)
-	local ability = keys.ability
 	
 	if DataCounter.ChoGathStacks~=0 then
 	
-	if DataCounter.ChoGathStacks==2 then
-		DataCounter.ChoGathStacks=1
-	end
-	if DataCounter.ChoGathStacks==3 then
-		DataCounter.ChoGathStacks=2
-	end
-	if DataCounter.ChoGathStacks==4 then
-		DataCounter.ChoGathStacks=2
-	end
-	if DataCounter.ChoGathStacks==5 then
-		DataCounter.ChoGathStacks=3
-	end
-	if DataCounter.ChoGathStacks==6 then
-		DataCounter.ChoGathStacks=3
-	end
+	DataCounter.ChoGathStacks=math.ceil(DataCounter.ChoGathStacks/2)
 	
 	local ability = keys.ability
 	local level = ability:GetLevel()
 	
 	local dummyab = "greenterror_HP" .. tostring(level)
-		
+	
 	if DataCounter.ChoGathStackAbility~=dummyab then
 	caster:RemoveAbility(DataCounter.ChoGathStackAbility)
 	caster:RemoveModifierByName("modifier_feast_bonus")
 	caster:AddAbility(dummyab)	
 	DataCounter.ChoGathStackAbility=dummyab	
 	end
-		
+	
 	local abilite=caster:FindAbilityByName(dummyab)
 	abilite:SetLevel(DataCounter.ChoGathStacks)		
 	
-	local scale=100+abilite:GetLevelSpecialValueFor("stack_scale",level)
-	caster:SetModelScale(scale)	
-	
+	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",DataCounter.ChoGathStacks))/100
+	caster:SetModelScale(scale)			
 	end
+	
+	print("Has " .. tostring(DataCounter.ChoGathStacks) .. " Stacks and level " .. tostring(abilite:GetLevel()) .. " and hp " .. abilite:GetLevelSpecialValueFor("stack_life",DataCounter.ChoGathStacks))
 	
 end
 
@@ -95,7 +81,7 @@ function UpdateStack(keys)
 	local abilite=caster:FindAbilityByName(dummyab)
 	abilite:SetLevel(DataCounter.ChoGathStacks)		
 	
-	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",level))/100
+	local scale=(100+abilite:GetLevelSpecialValueFor("stack_scale",DataCounter.ChoGathStacks))/100
 	caster:SetModelScale(scale)	
 	
 	end

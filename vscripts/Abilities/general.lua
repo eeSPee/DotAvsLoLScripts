@@ -6,7 +6,7 @@ function BlinkToPoint(keys)
 end
 
 function RestoreMana(keys)
-	local unit=keys.target
+	local unit=keys.caster
 	local ManaAdd=keys.mana
 	
 	unit:GiveMana(ManaAdd)	
@@ -25,6 +25,46 @@ function dealdamagebasedonabilitypower(keys,Scale)
 	damage_type = DAMAGE_TYPE_MAGIC,
 	}
 	ApplyDamage(damageTable)
+end
+
+function DamagePerLife(keys)
+	local caster=keys.caster
+	local targ=keys.target
+	local ability=keys.ability
+	
+	local varA=targ:GetMaxHealth()
+	local varB=ability:GetLevelSpecialValueFor("damagemult",ability:GetLevel())
+		
+	local DMJ = (varA)*varB/100	
+	
+	local damageTable = {
+	victim = targ,
+	attacker = caster,
+	damage = DMJ,
+	damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+	ApplyDamage(damageTable)	
+end
+
+function ReduceCooldown(keys)
+	local caster=keys.caster
+	local ability=keys.ability
+
+	local reduction=ability:GetLevelSpecialValueFor("cdreduction",ability:GetLevel())
+	local Time=ability:GetCooldownTimeRemaining()-reduction
+	
+	ability:EndCooldown()	
+	ability:StartCooldown(Time)	
+end
+
+function ResetCoolDown(keys)
+	local caster=keys.caster
+	local ability=keys.ability
+	
+	local Time=ability:GetCooldown()
+	
+	ability:EndCooldown()	
+	ability:StartCooldown(Time)	
 end
 
 function scrapelifebasedonabilitypowerHUNDREDS(keys,Scale)
