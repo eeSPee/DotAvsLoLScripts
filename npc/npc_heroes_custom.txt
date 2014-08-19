@@ -43,7 +43,7 @@
 	}
 	"npc_dota_hero_alistar"
 	{
-		"override_hero"				"npc_dota_hero_elder_titan"
+		"override_hero"				"npc_dota_hero_soirit_breaker"
 		"AbilityLayout" 		"5"
 		"Ability1"					"alistar_pulverize"		// Ability 1
 		"Ability2"					"alistar_charge"		// Ability 2

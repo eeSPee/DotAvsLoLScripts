@@ -46,6 +46,17 @@ function DamagePerLife(keys)
 	ApplyDamage(damageTable)	
 end
 
+function DashToTarget(keys)
+    local targetPos = keys.target:GetAbsOrigin()
+    local casterPos = keys.caster:GetAbsOrigin()
+	local ability=keys.ability
+		 
+    local direction = targetPos - casterPos
+    local vec = direction:Normalized() * ability:GetLevelSpecialValueFor("dashspeed",ability:GetLevel())
+	
+	keys.caster:SetAbsOrigin(casterPos + vec)
+end
+
 function ReduceCooldown(keys)
 	local caster=keys.caster
 	local ability=keys.ability

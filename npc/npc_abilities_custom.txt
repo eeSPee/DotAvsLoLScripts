@@ -2056,11 +2056,11 @@
 						}
 					}
 				
-					"RemoveModifier"
-					{
-					"ModifierName" "alistar_passive"
-					"Target"	   "CASTER"	
-					}
+					"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
+							"Function"	"ActivatePassive"	
+						}
 			}
 			//Special
 			// --------------------------------------------------------------------------------------
@@ -2073,7 +2073,7 @@
 				}				
 				"02"
 				{
-					"var_type"				"FIELD_INTEGER"
+					"var_type"				"FIELD_FLOAT"
 					"stunduration"		"1.5"
 				}			
 				"03"
@@ -2084,9 +2084,6 @@
 			}
 	}
 	
-	//=================================================================================================================
-	// heal
-	//=================================================================================================================
 	"alistar_heal"
 	{
 	
@@ -2101,7 +2098,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"			"nyx_assassin_impale"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2121,9 +2118,6 @@
 				
 		 "OnSpellStart"
 		 {
-		  
-		   "Action"
-			{
 				 "ActOnTargets"
 					{
 						"Target"
@@ -2131,7 +2125,7 @@
 							"Center" "CASTER"
 							"Radius" "%radius"
 							"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 						}
 						"Action"
 						{
@@ -2147,43 +2141,40 @@
 								"Target"	"CASTER"
 								"HealAmount"	"%heal"
 					}	
-					"RemoveModifier"
-					{
-					"ModifierName" "alistar_passive"
-					"Target"	   "CASTER"	
-					}
-			}
+							"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
+							"Function"	"ActivatePassive"	
+						}
+			
 		 }
-		"Modifiers"
-		{
-			"death_aura_caster"
+		 "Modifiers"
+		 {
+			"modifier_deathAura"
 			{
-				"Aura"					"death_aura"
+				"Passive"               "1"
+				"IsHidden"				"1"
+				"Aura"					"modifier_death"
 				"Aura_Radius"			"%auraradius"
 				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
-				"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				"Passive"				"1"
-				"IsHidden"				"1"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+				"Aura_ApplyToCaster"	"0"
 			}
-			"death_aura"
-			{
-				"IsDebuff"		"1"
-				"IsPurgable"	"0"
-				"IsHidden"		"1"
-				"EffectName"	"death_aura"
-				"Duration"		"1"
+			"modifier_death"
+			{			
+				"IsHidden"				"1"
 				"OnDeath"
 				{
 					"RunScript"
-					{
-						"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-						"Function"				"ReduceCoolDown"
-					}	
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/general.lua"
+							"Function"	"ReduceCooldown"	
+						}
 				}
 			}
-		
 		}
+		 
+		 
 			//Special
 			// --------------------------------------------------------------------------------------
 			"AbilitySpecial"
@@ -2191,156 +2182,35 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"heal"		"50 75 100 125"
-				}			
+					"radius"		"300"
+				}				
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"radius"		"575"
-				}			
+					"heal"		"90 160 230 300"
+				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"auraradius"		"900"
-				}			
+					"auraradius"		"600"
+				}	
 				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"cdreduction"		"2"
-				}	
-			}
-
-	}
-	
-	"alistar_charge"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"9015"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"ability_datadriven"
-		"AbilityName"					"alistar_charge"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"AbilityTextureName"			"nyx_assassin_vendetta"
-		"AbilitySharedCooldown"			"alistar_charge"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"200"
-		"AbilityCastPoint"				"0.1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0"
-	
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-
-		
-		"OnSpellStart"
-		{
-							
-					"ApplyModifier"
-					{
-					"ModifierName" "alistar_charging"
-					"Target"	   "TARGET"	
-					"Duration"		"%maxcharge"
-					}	
-					"RemoveModifier"
-					{
-					"ModifierName" "alistar_passive"
-					"Target"	   "CASTER"	
-					}		
-				
-		}
-		"OnProjectileHitUnit"
-		{
-							"Damage"
-							{
-								"Target"				"TARGET"
-								"Type"					"DAMAGE_TYPE_MAGICAL"
-								"Damage"				"%damage"
-							}	
-							"Knockback"
-							{
-								"Target"		"TARGET"
-								"Center"		"CASTER"
-								"Duration"		"1"
-								"Distance"		"%distance"
-								"Height"		"0"
-								"ShouldStun"	"1"
-							}
-		
-		}
-			"Modifiers"
-			{
-				"alistar_charging"
-				{
-					"IsHidden"	 "1"
-					"ThinkInterval" "%tick_rate"
-					"OnIntervalThink"
-					{
-						"ApplyMotionController"
-						{
-							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
-							"HorizontalControlFunction"	"DashToTarget"	
-							"Target"	"TARGET"
-						}
-						"RunScript"
-						{
-							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
-							"Function"	"calculatedistance"		
-							"Target"	"TARGET"
-						}
-					}
+					
 				}
 			}
-			
-		
-		"AbilitySpecial"
-			{
-				"01"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"tick_rate" "0.5"
-				}
-				"02"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"dashspeed" "12"
-				}
-				"03"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"damage" "100"
-				}
-				"04"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"distance" "600"
-				}
-				"05"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"maxcharge" "5"
-				}
-			}	
-				
-				
 	}
-	
 	"alistar_passive"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"9012"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"9004"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"ability_datadriven"
-		"AbilityName"					"alistar_passive"		
+		"AbilityName"					"alistar_passive"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
 		"AbilityTextureName" 			"nevermore_necromastery"
 		"MaxLevel"                      "1"
@@ -2358,79 +2228,47 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
-
+			
 		"Modifiers"
 		{
-			"alistar_passive"
+			"alistar_passive_modifier"
 			{
 				"Passive"	 "1"
 				"IsHidden"	 "1"
 				
 				"OnDestroy"
 				{
-						
-					"RemoveModifier"
-					{
-						"Target"				"CASTER"
-						"ModifierName"			"trample_aura"
-					}
 					"ApplyModifier"
 					{
 						"Target"				"CASTER"
-						"ModifierName"			"alistar_passive"
-					}	
-					"ApplyModifier"
-					{
-						"Target"				"CASTER"
-						"ModifierName"			"trample_aura"
+						"ModifierName"			"Aura_Damage"
 						"Duration"				"%dur"
-					}	
-				}
-			}
-			"trample_aura"
-			{
-				"ThinkInterval" "%tick_rate"
-					"OnIntervalThink"
-					{
-						"ActOnTargets"
-						{
-							"Target"
-							{
-								"Center" "CASTER"
-								"Radius" "%radius"
-								"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-								"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-							}
-							"Action"
-							{
-								"Damage"
-								{
-									"Target"				"TARGET"
-									"Type"					"DAMAGE_TYPE_MAGICAL"
-									"Damage"				"%damage"
-								}
-							}
-						}
-						"ActOnTargets"
-						{
-							"Target"
-							{
-								"Center" "CASTER"
-								"Radius" "%radius"
-								"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-								"Types" "DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
-							}
-							"Action"
-							{
-								"Damage"
-								{
-									"Target"				"TARGET"
-									"Type"					"DAMAGE_TYPE_MAGICAL"
-									"Damage"				"%creepdamage"
-								}
-							}
-						}
 					}
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"alistar_passive_modifier"
+					}
+				}
+			}	
+			"Aura_Damage"
+			{
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+					{
+					  "Damage"
+					  {
+					  "Target"
+						{
+							"Center" "CASTER"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+					   "Type" "DAMAGE_TYPE_MAGICAL"
+					   "Damage" "%damage"					   
+					  }
+					 }
 			}			
 
 		}
@@ -2439,112 +2277,228 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"tick_rate" "1"					
+					"radius" "400"					
 				}
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"dur" "3.1"
+					"damage" "10"
 				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "10"
+					"dur" "3.1"
 				}
-				"04"
+			}
+				
+	}
+
+	"alistar_ultimate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9010"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"alistar_ultimate"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 70 60"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200"
+		
+		"OnSpellStart"
+		{
+			 
+							"ApplyModifier"
+							{
+								"ModifierName" "alistar_ultimate_buff"
+								"Target"	   "CASTER"	
+								"Duration"	   "%dur"	
+							}
+							"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
+							"Function"	"ActivatePassive"	
+						}
+		}
+			
+		"Modifiers"
+		{
+			"alistar_ultimate_buff"
+			{
+				"Properties"
+				 {
+				   "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%block"
+				   "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "%block"
+				   "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE " "%damage"
+				 }
+			}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"creepdamage" "5"
+					"dur" "7.0"
+					
 				}
-				"05"
+				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"radius" "250"
+					"block" "-70"
+					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "40 60 80"
+					
 				}
 			}
 				
 	}
 	
 	//=================================================================================================================
-	// Pulverize
+	// scream
 	//=================================================================================================================
-	"alistar_ultimate"
+	"alistar_charge"
 	{
-	
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		
-		"ID"							"9013"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"ability_datadriven"
-		"AbilityName"					"alistar_ultimate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"nyx_assassin_impale"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"OnCastbar"						"1"
-		"OnLearnbar"					"1"			
+		"AbilityName"					"alistar_charge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"queenofpain_shadow_strike"
+		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
+		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0"
-
+		"AbilityCooldown"				"13.0"
+	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-		
-		// Abilities
-		//-------------------------------------------------------------------------------------------------------------		
-		
-		
-		 "OnSpellStart"
-		 {
+		"AbilityManaCost"   			"0"		
+				
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+					"Target" "TARGET"
+					"MoveSpeed" "%projecspeed"
+					"EffectName"	""				
+			}	
 			"ApplyModifier"
 			{
-				"Target"	"CASTER"
-				"Modifier"		"alistar_buff"
-				"Duration"		"%dur"
+				"Target"				"CASTER"
+				"ModifierName"			"modifier_charge"
 			}
+							"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
+							"Function"	"ActivatePassive"	
+						}
+			 "ApplyMotionController"
+							{
+								"Caster" "CASTER"
+								"Target" "TARGET"
+								"ScriptFile"	 "scripts/vscripts/abilities/general.lua"
+								"HorizontalControlFunction"	"DashToTarget"
+								"VerticalControlFunction" "DashToTarget"			
+							}
+		}
+		"OnProjectileHitUnit"
+		{		
+			"RunScript"
+			{
+				"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+				"Function"				"BlinkToPoint"
+				"Target"				"PROJECTILE"
+			}
+			"Knockback"
+							{
+								"Target"		"TARGET"
+								"Center"		"CASTER"
+								"Duration"		"0.25"
+								"Distance"		"%distance"
+								"Height"		"0"
+								"ShouldStun"	"1"
+							}
+			"Stun"
+							{
+								"Target"		"TARGET"
+								"Duration"		"1"
+							}
+			
+			"Damage"
+				{
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_MAGICAL"
+					"Damage"				"%damage"
+				}
 			"RemoveModifier"
 			{
-				"Target"	"CASTER"
-				"ModifierName"			"alistar_passive"
+				"Target"				"CASTER"
+				"ModifierName"			"modifier_charge"
 			}
 		}
 		"Modifiers"
 		{
-			"alistar_buff"
-			{
-				"Properties"
+			"modifier_charge"
 				{
-					//"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%armor"
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%damage"
+					"States"
+					 {
+					   "MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+					 }							
 				}
-			}			
 		}
-			//Special
-			// --------------------------------------------------------------------------------------
-			"AbilitySpecial"
+		
+		
+		"AbilitySpecial"
 			{
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"dur"		"7"
+					"distance" "600"
 				}
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"armor"		"-70"
+					"damage" "110 120 130 140"
 				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage"		"40 60 80"
-				}					
-			}
+					"dashspeed" "109"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"projecspeed" "7000"
+				}
+			}				
 	}
 }
