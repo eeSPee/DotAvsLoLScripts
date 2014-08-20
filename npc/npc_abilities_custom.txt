@@ -4,6 +4,284 @@
 {
 	"Version"		"1"
 
+	"precache_everything"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+
+		"precache"
+		{
+			//"model"			"models/heroes/juggernaut/jugg_healing_ward.vmdl"
+			//"model"			"models/heroes/tiny_01/tiny_01.vmdl"
+			//"model"			"models/heroes/tiny_02/tiny_02.vmdl"
+			//"model"			"models/heroes/tiny_03/tiny_03.vmdl"
+			//"model"			"models/heroes/tiny_04/tiny_04.vmdl"
+			//"model"			"models/heroes/tiny_01/tiny_01_tree.vmdl"
+			//"model"			"models/props_gameplay/frog.vmdl"
+			//"model"			"models/props_gameplay/chicken.vmdl"
+			//"model"			"models/heroes/shadowshaman/shadowshaman_totem.vmdl"
+			//"model"			"models/heroes/witchdoctor/witchdoctor_ward.vmdl"
+			//"model"			"models/heroes/enigma/eidelon.vmdl"
+			//"model"			"models/heroes/enigma/eidelon.vmdl"
+			//"model"			"models/heroes/beastmaster/beastmaster_bird.vmdl"
+			//"model"			"models/heroes/beastmaster/beastmaster_beast.vmdl"
+			//"model"			"models/heroes/venomancer/venomancer_ward.vmdl"
+			//"model"			"models/heroes/death_prophet/death_prophet_ghost.vmdl"
+			//"model"			"models/heroes/pugna/pugna_ward.vmdl"
+			//"model"			"models/heroes/witchdoctor/witchdoctor_ward.vmdl"
+			//"model"			"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
+			"model"			"models/heroes/rattletrap/rattletrap_cog.vmdl"
+			//"model"			"models/heroes/furion/treant.vmdl"
+			//"model"			"models/heroes/nightstalker/nightstalker_night.vmdl"
+			"model"			"models/heroes/nightstalker/nightstalker.vmdl"
+			//"model"			"models/heroes/broodmother/spiderling.vmdl"
+			//"model"			"models/heroes/weaver/weaver_bug.vmdl"
+			//"model"			"models/heroes/gyro/gyro_missile.vmdl"
+			//"model"			"models/heroes/invoker/forge_spirit.vmdl"
+			"model"			"models/heroes/lycan/lycan_wolf.vmdl"
+			//"model"			"models/heroes/lone_druid/true_form.vmdl"
+			//"model"			"models/heroes/undying/undying_flesh_golem.vmdl"
+			"model"			"models/development/invisiblebox.vmdl"
+			"model"			"models/heroes/pudge/weapon.vmdl"
+
+			//"particle_folder"				"particles/units/heroes/hero_antimage"
+			//"particle_folder"				"particles/units/heroes/hero_axe"
+			//"particle_folder"				"particles/units/heroes/hero_bane"
+			//"particle_folder"				"particles/units/heroes/hero_bloodseeker"
+			//"particle_folder"				"particles/units/heroes/hero_crystalmaiden"
+			//"particle_folder"				"particles/units/heroes/hero_drow"
+			"particle_folder"				"particles/units/heroes/hero_earthshaker"
+			//"particle_folder"				"particles/units/heroes/hero_juggernaut"
+			"particle_folder"				"particles/units/heroes/hero_mirana"
+			//"particle_folder"				"particles/units/heroes/hero_nevermore"
+			//"particle_folder"				"particles/units/heroes/hero_morphling"
+			//"particle_folder"				"particles/units/heroes/hero_phantom_lancer"
+			//"particle_folder"				"particles/units/heroes/hero_puck"
+			//"particle_folder"				"particles/units/heroes/hero_pudge"
+			//"particle_folder"				"particles/units/heroes/hero_razor"
+			//"particle_folder"				"particles/units/heroes/hero_sandking"
+			//"particle_folder"				"particles/units/heroes/hero_stormspirit"
+			//"particle_folder"				"particles/units/heroes/hero_sven"
+			//"particle_folder"				"particles/units/heroes/hero_tiny"
+			//"particle_folder"				"particles/units/heroes/hero_vengeful"
+			//"particle_folder"				"particles/units/heroes/hero_zuus"
+			//"particle_folder"				"particles/units/heroes/hero_kunkka"
+			//"particle_folder"				"particles/units/heroes/hero_lina"
+			//"particle_folder"				"particles/units/heroes/hero_lich"
+			//"particle_folder"				"particles/units/heroes/hero_lion"
+			//"particle_folder"				"particles/units/heroes/hero_shadowshaman"
+			//"particle_folder"				"particles/units/heroes/hero_slardar"
+			//"particle_folder"				"particles/units/heroes/hero_tidehunter"
+			//"particle_folder"				"particles/units/heroes/hero_witchdoctor"
+			//"particle_folder"				"particles/units/heroes/hero_riki"
+			//"particle_folder"				"particles/units/heroes/hero_enigma"
+			//"particle_folder"				"particles/units/heroes/hero_tinker"
+			//"particle_folder"				"particles/units/heroes/hero_sniper"
+			//"particle_folder"				"particles/units/heroes/hero_necrolyte"
+			//"particle_folder"				"particles/units/heroes/hero_warlock"
+			//"particle_folder"				"particles/units/heroes/hero_queenofpain"
+			//"particle_folder"				"particles/units/heroes/hero_venomancer"
+			//"particle_folder"				"particles/units/heroes/hero_faceless_void"
+			//"particle_folder"				"particles/units/heroes/hero_skeletonking"
+			//"particle_folder"				"particles/units/heroes/hero_death_prophet"
+			//"particle_folder"				"particles/units/heroes/hero_phantom_assassin"
+			//"particle_folder"				"particles/units/heroes/hero_pugna"
+			//"particle_folder"				"particles/units/heroes/hero_templar_assassin"
+			//"particle_folder"				"particles/units/heroes/hero_viper"
+			//"particle_folder"				"particles/units/heroes/hero_luna"
+			//"particle_folder"				"particles/units/heroes/hero_dragon_knight"
+			//"particle_folder"				"particles/units/heroes/hero_dazzle"
+			//"particle_folder"				"particles/units/heroes/hero_rattletrap"
+			//"particle_folder"				"particles/units/heroes/hero_leshrac"
+			//"particle_folder"				"particles/units/heroes/hero_furion"
+			//"particle_folder"				"particles/units/heroes/hero_life_stealer"
+			//"particle_folder"				"particles/units/heroes/hero_dark_seer"
+			//"particle_folder"				"particles/units/heroes/hero_clinkz"
+			//"particle_folder"				"particles/units/heroes/hero_omniknight"
+			//"particle_folder"				"particles/units/heroes/hero_enchantress"
+			//"particle_folder"				"particles/units/heroes/hero_huskar"
+			//"particle_folder"				"particles/units/heroes/hero_night_stalker"
+			//"particle_folder"				"particles/units/heroes/hero_broodmother"
+			//"particle_folder"				"particles/units/heroes/hero_bounty_hunter"
+			//"particle_folder"				"particles/units/heroes/hero_weaver"
+			//"particle_folder"				"particles/units/heroes/hero_jakiro"
+			//"particle_folder"				"particles/units/heroes/hero_batrider"
+			//"particle_folder"				"particles/units/heroes/hero_chen"
+			//"particle_folder"				"particles/units/heroes/hero_spectre"
+			//"particle_folder"				"particles/units/heroes/hero_doom_bringer"
+			//"particle_folder"				"particles/units/heroes/hero_ancient_apparition"
+			//"particle_folder"				"particles/units/heroes/hero_ursa"
+			//"particle_folder"				"particles/units/heroes/hero_spirit_breaker"
+			//"particle_folder"				"particles/units/heroes/hero_gyrocopter"
+			//"particle_folder"				"particles/units/heroes/hero_alchemist"
+			//"particle_folder"				"particles/units/heroes/hero_invoker"
+			//"particle_folder"				"particles/units/heroes/hero_silencer"
+			//"particle_folder"				"particles/units/heroes/hero_obsidian_destroyer"
+			//"particle_folder"				"particles/units/heroes/hero_lycan"
+			//"particle_folder"				"particles/units/heroes/hero_brewmaster"
+			//"particle_folder"				"particles/units/heroes/hero_shadow_demon"
+			//"particle_folder"				"particles/units/heroes/hero_lone_druid"
+			//"particle_folder"				"particles/units/heroes/hero_chaos_knight"
+			//"particle_folder"				"particles/units/heroes/hero_meepo"
+			//"particle_folder"				"particles/units/heroes/hero_treant"
+			//"particle_folder"				"particles/units/heroes/hero_ogre_magi"
+			//"particle_folder"				"particles/units/heroes/hero_undying"
+			//"particle_folder"				"particles/units/heroes/hero_rubick"
+			//"particle_folder"				"particles/units/heroes/hero_disruptor"
+			//"particle_folder"				"particles/units/heroes/hero_nyx_assassin"
+			//"particle_folder"				"particles/units/heroes/hero_siren"
+			//"particle_folder"				"particles/units/heroes/hero_keeper_of_the_light"
+			//"particle_folder"				"particles/units/heroes/hero_wisp"
+			//"particle_folder"				"particles/units/heroes/hero_visage"
+			//"particle_folder"				"particles/units/heroes/hero_slark"
+			//"particle_folder"				"particles/units/heroes/hero_medusa"
+			//"particle_folder"				"particles/units/heroes/hero_troll_warlord"
+			//"particle_folder"				"particles/units/heroes/hero_centaur"
+			//"particle_folder"				"particles/units/heroes/hero_magnataur"
+			//"particle_folder"				"particles/units/heroes/hero_shredder"
+			//"particle_folder"				"particles/units/heroes/hero_bristleback"
+			//"particle_folder"				"particles/units/heroes/hero_tusk"
+			//"particle_folder"				"particles/units/heroes/hero_skywrath_mage"
+			//"particle_folder"				"particles/units/heroes/hero_abaddon"
+			//"particle_folder"				"particles/units/heroes/hero_elder_titan"
+			//"particle_folder"				"particles/units/heroes/hero_legion_commander"
+			//"particle_folder"				"particles/units/heroes/hero_ember_spirit"
+			//"particle_folder"				"particles/units/heroes/hero_earth_spirit"
+			//"particle_folder"				"particles/units/heroes/hero_abyssal_underlord"
+			//"particle_folder"				"particles/units/heroes/hero_terrorblade"
+			//"particle_folder"				"particles/units/heroes/hero_phoenix"
+			//"particle_folder"					"particles/units/heroes/hero_windrunner"
+			//"particle_folder"				"particles/frostivus_herofx"
+			//"particle_folder"				"particles/frostivus_gameplay"
+			//"particle_folder"				"particles/test_particle"
+	      //"particle_folder"				"particles/pudge_reflex3"
+	     // "particle_folder"				"particles/reflex_puck"
+	      //"particle_folder"				"particles/nian_gameplay"
+	    //  "particle_folder"				"particles/generic_aoe_shockwave_1" //"particles/econ/generic/generic_aoe_shockwave_1"
+	      //"particle_folder"				"particles/generic_gameplay"
+	      //"particle_folder"				"particles/econ/generic/generic_timer"
+	      //"particle_folder"				"particles/reflex_ember"
+	      //"particle_folder"				"particles/reflex_particles"
+	      //"particle_folder"				"particles/items_fx"
+	      //"particle_folder"				"particles/items2_fx"
+	      //"particle_folder"				"particles/econ/generic/generic_aoe_explosion_sphere_1"
+      
+			
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			//"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
+		}
+	}
+	
 	//=================================================================================================================
 	// Rupture
 	//=================================================================================================================
@@ -43,11 +321,7 @@
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
 		
-		"precache" 
-			{ 
-			"particle_folder"				"particles/units/heroes/hero_earthshaker.vcpf" 
-			} 
-		
+				
 		 "OnSpellStart"
 		 {
 		   "CreateThinker"
@@ -64,12 +338,7 @@
 			
 					 "AttachEffect"
 						{
-						  "EffectName" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_cracks.vpcf"
-						  "ControlPointEntities"
-							{
-								"CASTER"		"follow_origin"
-								"TARGET"		"follow_origin"
-							}
+						  "EffectName" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_cracks.vpcf"						  
 						  "EffectAttachType" "follow_origin"
 						  "Target" "POINT"
 						 }
@@ -114,7 +383,7 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"1"
 								"Target"				"TARGET"
 							}
@@ -133,11 +402,6 @@
 			   {
 				"AttachEffect"
 						{
-						 "ControlPointEntities"
-							{
-								"CASTER"		"follow_origin"
-								"TARGET"		"follow_origin"
-							}
 						  "EffectName" "earthshaker_echoslam_start_cracks"
 						  "EffectAttachType" "follow_origin"
 						  "Target" "POINT"
@@ -225,16 +489,14 @@
 		
 		"precache"
 		{
-			
-				"particle_folder"			"particles/units/heroes/hero_mirana.pcf"				
+			"particle_folder"				"particles/units/heroes/hero_mirana"
 		}
-		
 		"OnSpellStart"
 		{
 			"LinearProjectile"
 			{				
 				"MoveSpeed"			"2000"
-				"EffectName"			"mirana_spell_arrow"
+				"EffectName"			"particles/units/heroes/hero_mirana/mirana_spell_arrow.vcpf"
 				"StartPosition"			"attach_attack1"
 				"FixedDistance"			"300"
 				"StartRadius"			"80"
@@ -244,6 +506,7 @@
 				"HasFrontalCone"		"0"
 				"ProvidesVision"		"0"
 				"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Target"				"POINT"
 			}			
 		}
 		"OnProjectileHitUnit"
@@ -264,7 +527,7 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.7"
 								"Target"				"TARGET"
 							}
@@ -359,7 +622,7 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.3"
 								"Target"				"TARGET"
 							}
@@ -454,9 +717,8 @@
 					"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealPUREdamagebasedonabilitypower"
 								"apscale"				"1"
-								"type"				"DAMAGE_TYPE_PURE"
 								"Target"				"TARGET"
 							}					
 				
@@ -1010,6 +1272,13 @@
 				"Target"				"TARGET"
 				"ModifierName"			"modifier_shiv_slow"
 				"Duration"				"%durationdagger"
+			}			
+			"ApplyModifier"
+			{
+				"Target"				"TARGET"
+				"ModifierName"			"modifier_shiv_blind"
+				"Duration"				"%durationdagger"
+				"TargetTypes"			"DOTA_UNIT_TARGET_CREEP"
 			}		
 			"Damage"
 				{
@@ -1020,17 +1289,15 @@
 				"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"1"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}		
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonattackdamage"
+								"Function"				"dealMAGICdamagebasedonattackdamage"
 								"dmjscale"				"1"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}		
 		}
@@ -1050,6 +1317,13 @@
 								"ModifierName" "modifier_shiv_slow"
 								"Target" "TARGET"
 								"Duration" "%duration"
+							}
+						"ApplyModifier"
+							{
+								"ModifierName" "modifier_shiv_blind"
+								"Target" "TARGET"
+								"Duration" "%duration"
+				"TargetTypes"			"DOTA_UNIT_TARGET_CREEP"
 							}
 					}
 				}
@@ -1073,6 +1347,16 @@
 				 "Properties"
 					 {
 					   "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
+					 }			
+				}
+			"modifier_shiv_blind"
+				{
+				 "EffectName" "generic_slowed"
+				 "IsDebuff"	 "1"
+				"TargetTypes"			"DOTA_UNIT_TARGET_CREEP"
+				 "Properties"
+					 {
+					   "MODIFIER_PROPERTY_MISS_PERCENTAGE" "100"
 					 }			
 				}
 		}
@@ -1184,9 +1468,8 @@
 					"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealPHYSICALdamagebasedonabilitypower"
 								"apscale"				"0.2"
-								"type"				"DAMAGE_TYPE_PHYSICAL"
 								"Target"				"TARGET"
 							}
 				}
@@ -1210,7 +1493,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"JitBdamage" "110 120 130 140"
+					"JitBdamage" "35 50 65 80 95"
 				}
 			}				
 	}
@@ -1351,11 +1634,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0"
+		"AbilityCooldown"				"100 90 80"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"   			"0"		
+		"AbilityManaCost"   			"100"		
 				
 			
 		
@@ -1432,7 +1715,8 @@
 						"Target"		"CASTER"
 						"ModifierName"  "modifier_clonelife"
 					}
-					"Damage"
+					
+					"ActOnTargets"
 					{
 						"Target"
 						{
@@ -1441,8 +1725,22 @@
 							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 						}
-						"Type"					"DAMAGE_TYPE_MAGICAL"
-						"Damage"				"%damage"
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"				"TARGET"
+								"Type"					"DAMAGE_TYPE_MAGICAL"
+								"Damage"				"%damage"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
+								"apscale"				"1"
+								"Target"				"TARGET"
+							}
+						}
 					}
 				 }
 				"OnDestroy"
@@ -1465,7 +1763,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "200 300 400"
+					"damage" "300 450 600"
 				}
 				"03"
 				{
@@ -1723,9 +2021,8 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.5"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}
 						}
@@ -1860,9 +2157,8 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.4"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}
 				}
@@ -1939,6 +2235,7 @@
 				"EndRadius"				"%pradius"
 				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"Target"				"POINT"
 			}			
 		}
 		"OnProjectileHitUnit"
@@ -1964,9 +2261,8 @@
 				"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.7"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}
 			}
@@ -2102,11 +2398,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0"
+		"AbilityCooldown"				"17 16 15 14 13"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"65 70 75 80 85"
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
@@ -2147,9 +2443,8 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.5"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}
 						}
@@ -2178,7 +2473,7 @@
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage"		"90 160 230 300"
+					"damage"		"60 105 150 195 240"
 				}	
 			}
 	}
@@ -2201,16 +2496,16 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"300"
+		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0"
+		"AbilityCooldown"				"12.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"40 50 60 70 80"
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
@@ -2233,6 +2528,14 @@
 								"Target"	"TARGET"
 								"HealAmount"	"%heal"
 							}
+							
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"healbasedonAP"
+								"apscale"				"0.2"
+								"Target"				"TARGET"
+							}
 						}
 					}
 					"Heal"
@@ -2245,6 +2548,13 @@
 							"ScriptFile"	 "scripts/vscripts/abilities/alistar.lua"
 							"Function"	"ActivatePassive"	
 						}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"healbasedonAP"
+								"apscale"				"0.2"
+								"Target"				"CASTER"
+							}
 			
 		 }
 		 "Modifiers"
@@ -2281,17 +2591,17 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"radius"		"300"
+					"radius"		"600"
 				}				
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"heal"		"90 160 230 300"
+					"heal"		"30 45 60 75 90"
 				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"auraradius"		"600"
+					"auraradius"		"900"
 				}	
 				"04"
 				{
@@ -2354,19 +2664,34 @@
 			{
 				"ThinkInterval"	"1"
 				"OnIntervalThink"
-					{
-					  "Damage"
-					  {
-					  "Target"
+					{					 
+					  "ActOnTargets"
 						{
-							"Center" "CASTER"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					   "Type" "DAMAGE_TYPE_MAGICAL"
-					   "Damage" "%damage"					   
-					  }
+							"Target"
+							{
+								"Center" "CASTER"
+								"Radius" "%radius"
+								"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+							"Action"
+							{
+								"Damage"
+								  {
+								  "Target" "TARGET"
+								   "Type" "DAMAGE_TYPE_MAGICAL"
+								   "Damage" "%damage"					   
+								  }
+								"RunScript"
+								{
+									"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+									"Function"				"dealMAGICdamagebasedonabilitypower"
+									"apscale"				"0.2"
+									"Target"				"TARGET"
+								}
+							}
+					
+					}
 					 }
 			}			
 
@@ -2416,7 +2741,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 200"
+		"AbilityManaCost"				"100"
 		
 		"OnSpellStart"
 		{
@@ -2507,8 +2832,7 @@
 			"TrackingProjectile"
 			{
 					"Target" "TARGET"
-					"MoveSpeed" "%projecspeed"
-					"EffectName"	""				
+					"MoveSpeed" "%projecspeed"		
 			}	
 			"ApplyModifier"
 			{
@@ -2562,9 +2886,8 @@
 							"RunScript"
 							{
 								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
-								"Function"				"dealmagicdamagebasedonabilitypower"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
 								"apscale"				"0.7"
-								"type"				"DAMAGE_TYPE_MAGICAL"
 								"Target"				"TARGET"
 							}
 			"RemoveModifier"
@@ -2595,12 +2918,12 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "110 120 130 140"
+					"damage" "55 110 165 220 275"
 				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"dashspeed" "109"
+					"dashspeed" "110"
 				}
 				"04"
 				{
@@ -2608,5 +2931,327 @@
 					"projecspeed" "7000"
 				}
 			}				
+	}
+	
+	
+	"nunu_Bite"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_Bite"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"queenofpain_shadow_strike"
+		"AbilitySharedCooldown"			"nunu_Bite"
+		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
+		"MaxLevel"                      "5"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"   			"50 55 60 65 70"		
+				
+		"OnSpellStart"
+		{		
+			"Damage"
+				{
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_PURE"
+					"Damage"				"%damage"
+				}	
+					"Heal"
+					{
+								"Target"	"CASTER"
+								"HealAmount"	"%heal"
+					}							
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"healbasedonAP"
+								"apscale"				"0.75"
+								"Target"				"CASTER"
+							}
+								"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/nunu.lua"
+							"Function"	"ActivatePassive"	
+						}
+		}
+		
+		
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "400 550 700 850 1000"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"heal" " 70 115 160 205 250"
+				}
+			}				
+	}
+	
+	"nunu_passive_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9004"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_passive_life"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityTextureName" 			"nevermore_necromastery"
+		"MaxLevel"                      "5"
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+			
+		"Modifiers"
+		{
+			"hidden_passive"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"nunu_passive_1"
+						"Duration"				"%dur"
+					}
+					"RemoveModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"hidden_passive"
+					}					
+					"RemoveAbility"
+					{
+						"Target"		"CASTER"
+						"AbilityName"		"nunu_passive_1"
+					}					
+				}
+			}	
+			"nunu_passive_1"
+			{
+				"Properties"
+				 {
+				   "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%block"
+				 }
+			 }
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dur" "120 150 180 210 240"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"block" "-9"
+				}
+			}
+				
+	}
+	
+	"nunu_passive_damage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9004"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_passive_damage"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityTextureName" 			"nevermore_necromastery"
+		"MaxLevel"                      "5"
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+			
+		"Modifiers"
+		{
+			"hidden_passive"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"nunu_passive_2"
+						"Duration"				"%dur"
+					}
+					"RemoveModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"hidden_passive"
+					}					
+					"RemoveAbility"
+					{
+						"Target"		"CASTER"
+						"AbilityName"		"nunu_passive_2"
+					}					
+				}
+			}	
+			"nunu_passive_2"
+			{
+				"OnDealDamage"
+				{
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"damageofmaxHP"
+								"Target"				"TARGET"
+							}
+				}
+			 }
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dur" "120 150 180 210 240"
+				}
+			}
+				
+	}
+	
+	"nunu_passive_speed"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9004"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_passive_speed"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityTextureName" 			"nevermore_necromastery"
+		"MaxLevel"                      "5"
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+			
+		"Modifiers"
+		{
+			"hidden_passive"
+			{
+				"Passive"	 "1"
+				"IsHidden"	 "1"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"nunu_passive_3"
+						"Duration"				"%dur"
+					}
+					"RemoveModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"hidden_passive"
+					}					
+					"RemoveAbility"
+					{
+						"Target"		"CASTER"
+						"AbilityName"		"nunu_passive_3"
+					}					
+				}
+			}	
+			"nunu_passive_3"
+			{	
+				"OnKill"
+				{
+					"ApplyModifier"
+					{
+						"Target"				"CASTER"
+						"ModifierName"			"nunu_speed"
+						"Duration"				"%spddur"
+					}		
+				}
+			 }
+			 "nunu_speed"
+			{	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed"
+				}
+			 }
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dur" "120 150 180 210 240"
+				}
+				"02
+				{
+					"var_type"				"FIELD_FLOAT"
+					"speed" "15"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"spddur" "5"
+				}
+			}
+				
 	}
 }

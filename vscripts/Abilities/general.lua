@@ -12,40 +12,80 @@ function RestoreMana(keys)
 	unit:GiveMana(ManaAdd)	
 end
 
-function dealmagicdamagebasedonabilitypower(keys)
-	local caster=keys.caster
+function dealMAGICdamagebasedonabilitypower(keys)
+	local caster = keys.caster
 	local target = keys.target	
 	local Scale= keys.apscale
 	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
-	local AP = Data.AbilityPower or 0
+	local AP = Data.AbilityPower
 	local DMJ=AP*Scale
-	local Type=keys.type or DAMAGE_TYPE_MAGICAL
 	
 	local damageTable = {
 	victim = target,
 	attacker = caster,
 	damage  = DMJ,
-	damage_type = Type,
+	damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
-	
-	print(DMJ)
-	print(Type)
 end
 
-function dealmagicdamagebasedonattackdamage(keys)
-	local caster=keys.caster
+function dealPHYSICALdamagebasedonabilitypower(keys)
+	local caster = keys.caster
 	local target = keys.target	
-	local Scale= keys.dmjscale
-	local AP = caster:GetAttackDamage()
+	local Scale= keys.apscale
+	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
+	local AP = Data.AbilityPower
 	local DMJ=AP*Scale
-	local Type=keys.type or DAMAGE_TYPE_PHYSICAL
 	
 	local damageTable = {
 	victim = target,
 	attacker = caster,
 	damage  = DMJ,
-	damage_type = Type,
+	damage_type = DAMAGE_TYPE_PHYSICAL,
+	}
+	ApplyDamage(damageTable)
+end
+
+function dealPHYSICALdamagebasedonabilitypower(keys)
+	local caster = keys.caster
+	local target = keys.target	
+	local Scale= keys.apscale
+	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
+	local AP = Data.AbilityPower
+	local DMJ=AP*Scale
+	
+	local damageTable = {
+	victim = target,
+	attacker = caster,
+	damage  = DMJ,
+	damage_type = DAMAGE_TYPE_PURE,
+	}
+	ApplyDamage(damageTable)
+end
+
+function healbasedonAP(keys)
+	local target = keys.target	
+	local Scale= keys.apscale
+	local Data = GameData:For("DataCounter",keys.caster:GetPlayerOwner())
+	local AP = Data.AbilityPower
+	local Heal=AP*Scale
+	
+	target:Heal(Heal)
+end
+
+function dealMAGICdamagebasedonattackdamage(keys)
+	local caster=keys.caster
+	local target = keys.target	
+	local Type = keys.type	
+	local Scale= keys.dmjscale
+	local DMG = caster:GetAttackDamage()
+	local DMJ=DMG*Scale
+		
+	local damageTable = {
+	victim = target,
+	attacker = caster,
+	damage  = DMJ,
+	damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
 end
@@ -101,14 +141,14 @@ function ResetCoolDown(keys)
 	ability:StartCooldown(Time)	
 end
 
-function scrapelifebasedonabilitypowerHUNDREDS(keys,Scale)
+function scrapelifebasedonabilitypowerHUNDREDS(keys)
 	local caster=keys.caster
 	local target = keys.target	
 	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
-	local AP = Data.AbilityPower or 0
+	local AP = Data.AbilityPower
 	
 	local varA=target:GetMaxHealth()/100
-	local varB=math.floor(AP/100)*Scale
+	local varB=math.floor(AP/100)
 		
 	local DMJ = (varA)*varB	
 	
@@ -116,7 +156,7 @@ function scrapelifebasedonabilitypowerHUNDREDS(keys,Scale)
 	victim = target,
 	attacker = caster,
 	damage  = DMJ,
-	damage_type = DAMAGE_TYPE_MAGIC,
+	damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
 end

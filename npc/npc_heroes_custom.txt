@@ -18,6 +18,7 @@
 		"Ability4"					"greenterror_passive"
 		"Ability5"					"greenterror_bite"
 		"Ability6"					"attribute_bonus"
+		"Ability7"					"precache_everything"
 	}
 	"npc_dota_hero_shaco"
 	{

@@ -33,8 +33,10 @@ end
 PlayerDataCounter = {
 	AbilityPower = 1000,	
 
+	NuNuStacks = 0,	
+	
 	ChoGathStacks = 0,	
-	ChoGathStackAbility = nil
+	ChoGathStackAbility = nil	
 }
 
 GameData:AddSchema("DataCounter", PlayerDataCounter)
