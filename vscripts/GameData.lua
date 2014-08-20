@@ -31,6 +31,8 @@ function TableCopy(table)
 end
 
 PlayerDataCounter = {
+	AbilityPower = 1000,	
+
 	ChoGathStacks = 0,	
 	ChoGathStackAbility = nil
 }

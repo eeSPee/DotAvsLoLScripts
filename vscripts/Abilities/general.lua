@@ -12,17 +12,40 @@ function RestoreMana(keys)
 	unit:GiveMana(ManaAdd)	
 end
 
-function dealdamagebasedonabilitypower(keys,Scale)
+function dealmagicdamagebasedonabilitypower(keys)
 	local caster=keys.caster
 	local target = keys.target	
+	local Scale= keys.apscale
 	local Data = GameData:For("DataCounter",caster:GetPlayerOwner())
 	local AP = Data.AbilityPower or 0
+	local DMJ=AP*Scale
+	local Type=keys.type or DAMAGE_TYPE_MAGICAL
 	
 	local damageTable = {
 	victim = target,
 	attacker = caster,
-	damage  = AP*Scale,
-	damage_type = DAMAGE_TYPE_MAGIC,
+	damage  = DMJ,
+	damage_type = Type,
+	}
+	ApplyDamage(damageTable)
+	
+	print(DMJ)
+	print(Type)
+end
+
+function dealmagicdamagebasedonattackdamage(keys)
+	local caster=keys.caster
+	local target = keys.target	
+	local Scale= keys.dmjscale
+	local AP = caster:GetAttackDamage()
+	local DMJ=AP*Scale
+	local Type=keys.type or DAMAGE_TYPE_PHYSICAL
+	
+	local damageTable = {
+	victim = target,
+	attacker = caster,
+	damage  = DMJ,
+	damage_type = Type,
 	}
 	ApplyDamage(damageTable)
 end

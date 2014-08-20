@@ -25,10 +25,11 @@
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_rupture"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"MaxLevel"                      "5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"950"
 		"AbilityCastPoint"				"0.1"
 		
 		// Time		
@@ -37,14 +38,14 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"90"
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
 		
 		"precache" 
 			{ 
-			"particle_folder"				"particles/units/heroes/hero_leshrac" 
+			"particle_folder"				"particles/units/heroes/hero_earthshaker.vcpf" 
 			} 
 		
 		 "OnSpellStart"
@@ -61,11 +62,18 @@
 		   "Action"
 			{
 			
-					 "CreateThinker"
-					   {
-						"ModifierName" "creature_rupture_thinker_display"
-						"Target" "POINT"
-					   }
+					 "AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_cracks.vpcf"
+						  "ControlPointEntities"
+							{
+								"CASTER"		"follow_origin"
+								"TARGET"		"follow_origin"
+							}
+						  "EffectAttachType" "follow_origin"
+						  "Target" "POINT"
+						 }
+				
 				 "ActOnTargets"
 					{
 						"Target"
@@ -103,6 +111,13 @@
 								"Height"		"300"
 								"ShouldStun"	"1"
 							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"1"
+								"Target"				"TARGET"
+							}
 						}
 					}
 			}
@@ -111,21 +126,21 @@
 		 "Modifiers"
 		 {
 			  
-			   "creature_rupture_thinker_display"
+			  			   
+			   "creature_rupture_thinker"
 			  {		  
 			   "OnCreated"
 			   {
 				"AttachEffect"
 						{
-						  "EffectName" "particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+						 "ControlPointEntities"
+							{
+								"CASTER"		"follow_origin"
+								"TARGET"		"follow_origin"
+							}
+						  "EffectName" "earthshaker_echoslam_start_cracks"
 						  "EffectAttachType" "follow_origin"
 						  "Target" "POINT"
-						  "ControlPoints"
-						  {
-						   "00" "0 0 0"
-						   "01" "%radius 0 0"						   
-							"02"		"0 0 0"
-						  }
 						 }
 				}
 			   }
@@ -163,12 +178,12 @@
 				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage"		"90 160 230 300"
+					"damage"		"80 135 190 245 305"
 				}			
 				"05"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"risetime"		"2"
+					"risetime"		"0.625"
 				}
 			}
 
@@ -184,7 +199,7 @@
 		"ID"							"9001"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"ability_datadriven"
 		"AbilityName"					"greenterror_scream"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -193,11 +208,12 @@
 		"OnLearnbar"					"1"
 		"AbilitySharedCooldown"			"greenterror_scream"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"MaxLevel"                      "5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.25"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -205,21 +221,27 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"   			"0"		
+		"AbilityManaCost"   			"70 80 90 100 110"		
+		
+		"precache"
+		{
+			
+				"particle_folder"			"particles/units/heroes/hero_mirana.pcf"				
+		}
 		
 		"OnSpellStart"
 		{
 			"LinearProjectile"
 			{				
 				"MoveSpeed"			"2000"
-				"EffectName"			"particles/units/heroes/hero_queenofpain/queenofpain_scream_of_pain.vpcf"
+				"EffectName"			"mirana_spell_arrow"
 				"StartPosition"			"attach_attack1"
 				"FixedDistance"			"300"
 				"StartRadius"			"80"
 				"EndRadius"				"400"
 				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"HasFrontalCone"		"1"
+				"HasFrontalCone"		"0"
 				"ProvidesVision"		"0"
 				"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
 			}			
@@ -239,6 +261,13 @@
 					"ModifierName"			"scream_silence"
 					"Duration"				"%duration"
 				}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.7"
+								"Target"				"TARGET"
+							}
 			}
 		"Modifiers"
 		{
@@ -264,7 +293,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "80 160 240 320"
+					"damage" "75 125 175 225 275"
 				}
 			}				
 	}
@@ -283,6 +312,7 @@
 		"OnLearnbar"					"1"			
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"		
 		"AbilityTextureName" 			"bristleback_quill_spray"
+		"MaxLevel"                      "5"
 		
 		
 
@@ -326,6 +356,13 @@
 					"Type"					"DAMAGE_TYPE_MAGICAL"
 					"Damage"				"%damage"
 				}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.3"
+								"Target"				"TARGET"
+							}
 			}
 			
 		"Modifiers"
@@ -358,7 +395,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "30 50 70 90"
+					"damage" "20 35 50 65 80"
 					}
 				}
 				
@@ -391,12 +428,12 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0"
+		"AbilityCooldown"				"60.0"
 	
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"100"
 
 		
 		"OnSpellStart"
@@ -413,7 +450,15 @@
 					"Target"				"TARGET"
 					"Type"					"DAMAGE_TYPE_PURE"
 					"Damage"				"%damage"
-					}					
+					}	
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"1"
+								"type"				"DAMAGE_TYPE_PURE"
+								"Target"				"TARGET"
+							}					
 				
 		}
 		
@@ -606,7 +651,7 @@
 				"01"	
 				{
 					"var_type"				"FIELD_FLOAT"
-					"stack_scale" "4 8 12 16 20 24 28"
+					"stack_scale" "4 8 12 16 20 24"
 					}
 				"02"
 				{
@@ -682,7 +727,7 @@
 				"01"	
 				{
 					"var_type"				"FIELD_FLOAT"
-					"stack_scale" "8 16 24 32 40 48 56"	
+					"stack_scale" "6 12 18 24 30 36"	
 					}
 				"02"
 				{
@@ -756,7 +801,7 @@
 				"01"	
 				{
 					"var_type"				"FIELD_FLOAT"
-					"stack_scale" "12 24 36 48 60 72 84"	
+					"stack_scale" "8 16 24 32 40 48"	
 					}
 				"02"
 				{
@@ -787,6 +832,7 @@
 		"AbilityTextureName"			"riki_blink_strike"
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
+		"MaxLevel"                      "5"	
 		"AbilitySharedCooldown"			"jester_blink"
 		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
 
@@ -797,16 +843,12 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0"
+		"AbilityCooldown"				"11.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"   			"0"		
+		"AbilityManaCost"   			"90 80 70 60 50"		
 		
-		"precache"
-		{
-			//"particlefile"				"particles/units/heroes/hero_queenofpain.pcf"
-		}
 		
 		"OnSpellStart"
 		{					
@@ -898,12 +940,12 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"duration" "5.0"
+					"duration" "3.5"
 				}
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"crit_bonus" "1010 1200 1300 1400"
+					"crit_bonus" "140 160 180 200 220"
 				}
 			}				
 	}
@@ -926,6 +968,7 @@
 		"AbilityTextureName"			"queenofpain_shadow_strike"
 		"AbilitySharedCooldown"			"jester_shiv"
 		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
+		"MaxLevel"                      "5"	
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -934,11 +977,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0"
+		"AbilityCooldown"				"8.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"   			"0"		
+		"AbilityManaCost"   			"50 55 60 65 70"		
 				
 		"OnSpellStart"
 		{
@@ -971,9 +1014,25 @@
 			"Damage"
 				{
 					"Target"				"TARGET"
-					"Type"					"DAMAGE_TYPE_PHYSICAL"
+					"Type"					"DAMAGE_TYPE_MAGICAL"
 					"Damage"				"%damage"
 				}
+				"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"1"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
+							}		
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonattackdamage"
+								"dmjscale"				"1"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
+							}		
 		}
 		"Modifiers"
 		{
@@ -1029,17 +1088,17 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage" "110 120 130 140"
+					"damage" "50 90 130 170 210"
 				}
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"move_slow" "-20 -30 -40 -50"
+					"move_slow" "-10 -15 -20 -25 -30"
 				}
 				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"Cool" "13"
+					"Cool" "8"
 				}
 				
 				"05"
@@ -1119,6 +1178,17 @@
 				"States"
 				{
 					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.2"
+								"type"				"DAMAGE_TYPE_PHYSICAL"
+								"Target"				"TARGET"
+							}
 				}
 				"OnDestroy"
 				{
@@ -1444,7 +1514,7 @@
 				"Passive"	 "1"
 				"IsHidden"	 "1"
 				
-				"OnAttackLanded"
+				"OnDealDamage"
 				{
 					"RunScript"
 					{
@@ -1452,15 +1522,6 @@
 						"Function"				"BackStab"
 						"Target"				"TARGET"
 					}
-				}
-				"OnOwnerSpawned"
-				{				
-					"RunScript"
-					{
-							"ScriptFile"			"scripts/vscripts/abilities/shaco.lua"
-							"Function"				"MakeClone"
-					}				
-				
 				}
 			}			
 
@@ -1557,6 +1618,12 @@
 								"Target"				"TARGET"
 								"Scale"					"%Scale"
 							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"scrapelifebasedonabilitypowerHUNDREDS"
+								"Target"				"TARGET"
+							}
 						}
 					}
 					"SpendMana"
@@ -1652,6 +1719,14 @@
 								"Target"				"TARGET"
 								"Type"					"DAMAGE_TYPE_MAGICAL"
 								"Damage"				"%damagebase"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.5"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
 							}
 						}
 				
@@ -1782,6 +1857,14 @@
 								"Type"					"DAMAGE_TYPE_MAGICAL"
 								"Damage"				"%damage"
 							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.4"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
+							}
 				}
 			}
 
@@ -1878,6 +1961,14 @@
 					"Function"				"BlinkToPoint"
 					"Target"				"PROJECTILE"
 				}
+				"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.7"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
+							}
 			}
 		
 		"AbilitySpecial"
@@ -2052,6 +2143,14 @@
 								"Distance"		"0"
 								"Height"		"300"
 								"ShouldStun"	"1"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.5"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
 							}
 						}
 					}
@@ -2343,7 +2442,7 @@
 				 {
 				   "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%block"
 				   "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE" "%block"
-				   "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE " "%damage"
+				   "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%damage"
 				 }
 			}
 
@@ -2364,7 +2463,7 @@
 				}
 				"03"
 				{
-					"var_type"				"FIELD_FLOAT"
+					"var_type"				"FIELD_INTEGER"
 					"damage" "40 60 80"
 					
 				}
@@ -2459,6 +2558,15 @@
 					"Type"					"DAMAGE_TYPE_MAGICAL"
 					"Damage"				"%damage"
 				}
+				
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealmagicdamagebasedonabilitypower"
+								"apscale"				"0.7"
+								"type"				"DAMAGE_TYPE_MAGICAL"
+								"Target"				"TARGET"
+							}
 			"RemoveModifier"
 			{
 				"Target"				"CASTER"
