@@ -18,7 +18,6 @@
 		"Ability4"					"greenterror_passive"
 		"Ability5"					"greenterror_bite"
 		"Ability6"					"attribute_bonus"
-		"Ability7"					"precache_everything"
 	}
 	"npc_dota_hero_shaco"
 	{
@@ -55,13 +54,13 @@
 	}
 	"npc_dota_hero_nunu"
 	{
-		"override_hero"				"npc_dota_hero_elder_titan"
+		"override_hero"				"npc_dota_hero_tusk"
 		"AbilityLayout" 		"5"
-		"Ability1"					"alistar_pulverize"		// Ability 1
-		"Ability2"					"alistar_charge"		// Ability 2
-		"Ability3"					"alistar_heal"
-		"Ability4"					"alistar_passive"
-		"Ability5"					"alistar_ultimate"
+		"Ability1"					"nunu_Bite"		// Ability 1
+		"Ability2"					"nunu_boil"		// Ability 2
+		"Ability3"					"nunu_iceball"
+		"Ability4"					"nunu_passive_tooltip"
+		"Ability5"					"nunu_ultimate"
 		"Ability6"					"attribute_bonus"
 	}
 }

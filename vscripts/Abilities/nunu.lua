@@ -49,11 +49,11 @@ function damageofmaxHP(keys)
 	local MAX=caster:GetMaxHealth()
 	local Scale=1
 	
-	if caster:HasModifier("nunu_passive_2") then
+	if caster:HasModifier("nunu_passive_life") then
 	Scale=1.1
 	end
 		
-	local DMJ = (Scale)*MAX/100	
+	local DMJ = Scale*MAX/100	
 	
 	local damageTable = {
 	victim = targ,
@@ -62,4 +62,41 @@ function damageofmaxHP(keys)
 	damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)	
+end
+
+function NunuUltAddStack(keys)    
+    local caster = keys.caster	
+	local ability = keys.ability	
+	local DataCounter = GameData:For("DataCounter",playerowner)
+	
+	if DataCounter.NunuUltiCharges~=12 then
+		DataCounter.NunuUltiCharges=DataCounter.NunuUltiCharges+1
+	end
+end
+
+function NunuUltDamageEnd(keys)    
+    local caster = keys.caster	
+	local ability = keys.ability	
+	local targ=keys.target
+	local DataCounter = GameData:For("DataCounter",playerowner)
+	
+	local DamagePerStack=ability:GetLevelSpecialValueFor("damage",ability:GetLevel())/12
+	local APPerStack=(2.5*Data.AbilityPower)/12
+	local DMJ=(DamagePerStack+APPerStack)*DataCounter.NunuUltiCharges
+	
+	local damageTable = {
+	victim = targ,
+	attacker = caster,
+	damage = DMJ,
+	damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+	ApplyDamage(damageTable)
+end
+
+function NunuUltClearStacks(keys)    
+    local caster = keys.caster	
+	local ability = keys.ability	
+	local DataCounter = GameData:For("DataCounter",playerowner)
+	
+	DataCounter.NunuUltiCharges=0
 end

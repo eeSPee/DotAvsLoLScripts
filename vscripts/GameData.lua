@@ -34,6 +34,7 @@ PlayerDataCounter = {
 	AbilityPower = 1000,	
 
 	NuNuStacks = 0,	
+	NunuUltiCharges = 0,	
 	
 	ChoGathStacks = 0,	
 	ChoGathStackAbility = nil	

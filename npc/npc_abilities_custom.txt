@@ -3254,4 +3254,375 @@
 			}
 				
 	}
+	
+	"nunu_boil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_boil"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"queenofpain_shadow_strike"
+		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"   			"50"		
+				
+		"OnSpellStart"
+		{
+			
+			"ApplyModifier"
+			{
+				"Target"				"CASTER"
+				"ModifierName"			"modifier_bloodboil"
+				"Duration"				"%durat"
+			}
+			"ApplyModifier"
+			{
+				"Target"				"TARGET"
+				"ModifierName"			"modifier_bloodboil"
+				"Duration"				"%durat"
+			}
+			"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/nunu.lua"
+							"Function"	"ActivatePassive"	
+						}
+		}
+		"Modifiers"
+		{
+			"modifier_bloodboil"
+				{
+					"Properties"
+					 {
+					   "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
+					   "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed"
+					 }							
+				}
+		}
+		
+		
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"durat" "12"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"movespeed" "8 9 10 11 12"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"attackspeed" "25 30 35 40 45"
+				}
+			}				
+	}
+	
+	"nunu_iceball"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9006"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_iceball"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"queenofpain_shadow_strike"
+		//"AbilityCastAnimation"                  "ACT_DOTA_DISABLED"
+		"MaxLevel"                      "5"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"   			"75 85 95 105 115"		
+				
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+					"Target" "TARGET"
+					"MoveSpeed" "600"
+					"EffectName"	"particles/units/heroes/hero_queenofpain/queenofpain_shadow_strike"				
+			}	
+			"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/nunu.lua"
+							"Function"	"ActivatePassive"	
+						}
+		}
+		"OnProjectileHitUnit"
+		{		
+			"ApplyModifier"
+			{
+				"Target"				"TARGET"
+				"ModifierName"			"modifier_nunu_slow"
+				"Duration"				"%duration"
+			}		
+			"Damage"
+				{
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_MAGICAL"
+					"Damage"				"%damage"
+				}
+				"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
+								"apscale"				"1"
+								"Target"				"TARGET"
+							}		
+		}
+		"Modifiers"
+		{			
+			"modifier_nunu_slow"
+				{
+				 "EffectName" "generic_slowed"
+				 "IsDebuff"	 "1"
+				 "Properties"
+					 {
+					   "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
+					   "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed"
+					 }			
+				}
+		}
+		
+		
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration" "3.0"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "85 130 175 225 275"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"move_slow" "-20 -30 -40 -50 -60"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"attackspeed" "-25"
+				}
+			}				
+	}
+	
+	"nunu_ultimate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9002"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"greenterror_spikes"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		"MaxLevel"                      "5"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"3.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"110 100 90"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"OnSpellStart"
+		{		
+			"ApplyModifier"
+			{
+				"ModifierName" "auraSlow"
+				"Target"	   "CASTER"	
+			}
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltClearStacks"
+							}
+			"RunScript"
+						{
+							"ScriptFile"	 "scripts/vscripts/abilities/nunu.lua"
+							"Function"	"ActivatePassive"	
+						}
+		}
+		
+
+		"OnChannelSucceeded"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName" "auraSlow"
+				"Target"	   "CASTER"	
+			}
+			"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "POINT"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{							
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltDamageEnd"
+								"Target"				"TARGET"
+							}
+						}
+					}
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltClearStacks"
+							}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName" "auraSlow"
+				"Target"	   "CASTER"	
+			}
+			"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "POINT"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{							
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltDamageEnd"
+								"Target"				"TARGET"
+							}
+						}
+					}
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltClearStacks"
+							}
+		}
+			
+		"Modifiers"
+		{
+			"auraSlow"
+			{
+				"Aura"					"modifier_slow"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+				"Aura_ApplyToCaster"	"0"
+				"ThinkInterval" "0.25"
+				"OnIntervalThink"
+				{
+					"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/nunu.lua"
+								"Function"				"NunuUltAddStack"
+							}
+				}
+			}
+			"modifier_slow"
+				{
+				 "EffectName" "generic_slowed"
+				 "IsDebuff"	 "1"
+				 "Properties"
+					 {
+					   "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%moveslow"
+					   "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attslow"
+					 }			
+				}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "625 875 1125"					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius" "900"					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"moveslow" "-50"					
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"attslow" "-25"					
+				}
+			}
+	}
+	
+	"nunu_passive_tooltip"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9004"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"nunu_passive_tooltip"
+		"OnCastbar"						"0"
+		"OnLearnbar"					"0"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
+		"AbilityTextureName" 			"nevermore_necromastery"
+		"MaxLevel"                      "1"				
+	}
 }
