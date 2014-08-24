@@ -1,6 +1,7 @@
 function ActivatePassive(keys)    
     local caster = keys.caster	
 	local ability = keys.ability	
+	local playerowner = caster:GetPlayerOwner()
 	local DataCounter = GameData:For("DataCounter",playerowner)
 	
 	if DataCounter.NuNuStacks==5 then
@@ -9,8 +10,7 @@ function ActivatePassive(keys)
 	else
 	DataCounter.NuNuStacks=DataCounter.NuNuStacks+1
 	end
-		 
-    caster:RemoveModifierByName("alistar_passive_modifier")
+	print(DataCounter.NuNuStacks)
 end
 
 function NunuBite(keys)    
@@ -67,21 +67,23 @@ end
 function NunuUltAddStack(keys)    
     local caster = keys.caster	
 	local ability = keys.ability	
+	local playerowner = caster:GetPlayerOwner()
 	local DataCounter = GameData:For("DataCounter",playerowner)
 	
 	if DataCounter.NunuUltiCharges~=12 then
 		DataCounter.NunuUltiCharges=DataCounter.NunuUltiCharges+1
 	end
+	print("Charging")
 end
 
 function NunuUltDamageEnd(keys)    
     local caster = keys.caster	
 	local ability = keys.ability	
 	local targ=keys.target
-	local DataCounter = GameData:For("DataCounter",playerowner)
-	
+	local playerowner = caster:GetPlayerOwner()
+	local DataCounter = GameData:For("DataCounter",playerowner)	
 	local DamagePerStack=ability:GetLevelSpecialValueFor("damage",ability:GetLevel())/12
-	local APPerStack=(2.5*Data.AbilityPower)/12
+	local APPerStack=(2.5*DataCounter.AbilityPower)/12
 	local DMJ=(DamagePerStack+APPerStack)*DataCounter.NunuUltiCharges
 	
 	local damageTable = {
@@ -91,11 +93,13 @@ function NunuUltDamageEnd(keys)
 	damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	print(DMJ .. " and " .. DataCounter.NunuUltiCharges)
 end
 
 function NunuUltClearStacks(keys)    
     local caster = keys.caster	
 	local ability = keys.ability	
+	local playerowner = caster:GetPlayerOwner()
 	local DataCounter = GameData:For("DataCounter",playerowner)
 	
 	DataCounter.NunuUltiCharges=0

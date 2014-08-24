@@ -1,25 +1,24 @@
 GameData = {}
-GameData.Info = {}
+GameData.Schema = {}
 
-function GameData:AddSchema(name, data)
-	self.Info[name] = {
+function GameData:AddSchema(schemaname, data)
+	self.Schema[schemaname] = {
 		Default = data,
 		Entries = {}
 	}
 end
 
-
-function GameData:For(name, ent)
-	local ret = self.Info[name].Entries[ent] or self:Assign(name, ent)
+function GameData:For(schemaname, ent)
+	local ret = self.Schema[schemaname].Entries[ent] or self:Assign(schemaname, ent)
 	return ret
 end
 
-function GameData:Assign(name, entobj)
-	local data = self.Info[name].Default
+function GameData:Assign(schemaname, entobj)
+	local data = self.Schema[schemaname].Default
 	local bind = TableCopy(data)
 	bind.Ent = entobj
-	self.Info[name].Entries[entobj] = bind
-	return self.Info[name].Entries[entobj] --better way?
+	self.Schema[schemaname].Entries[entobj] = bind
+	return self.Schema[schemaname].Entries[entobj] --better way?
 end
 
 function TableCopy(table)
@@ -32,10 +31,8 @@ end
 
 PlayerDataCounter = {
 	AbilityPower = 1000,	
-
 	NuNuStacks = 0,	
-	NunuUltiCharges = 0,	
-	
+	NunuUltiCharges = 0,		
 	ChoGathStacks = 0,	
 	ChoGathStackAbility = nil	
 }

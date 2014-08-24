@@ -1,6 +1,6 @@
 function AddStack(keys)
 	local caster=keys.caster
-	local playerowner = caster.GetPlayerOwner(caster)
+	local playerowner = caster:GetPlayerOwner()
 	local DataCounter = GameData:For("DataCounter",playerowner)
 
 	if DataCounter.ChoGathStacks~=6 then
@@ -28,7 +28,7 @@ end
 
 function RemoveStacks(keys)
 	local caster=keys.caster
-	local playerowner = caster.GetPlayerOwner(caster)
+	local playerowner = caster:GetPlayerOwner()
 	local DataCounter = GameData:For("DataCounter",playerowner)
 	
 	if DataCounter.ChoGathStacks~=0 then

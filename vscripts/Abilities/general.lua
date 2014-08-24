@@ -70,7 +70,7 @@ function healbasedonAP(keys)
 	local AP = Data.AbilityPower
 	local Heal=AP*Scale
 	
-	target:Heal(Heal)
+	target:Heal(Heal,target)
 end
 
 function dealMAGICdamagebasedonattackdamage(keys)
