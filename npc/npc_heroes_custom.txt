@@ -12,8 +12,8 @@
 		//"HeroID"				"1"
 		"override_hero"				"npc_dota_hero_nyx_assassin"
 		"AbilityLayout" 		"5"
-		"Ability1"					"greenterror_rupture"		// Ability 1
-		"Ability2"					"greenterror_scream"		// Ability 2
+		"Ability2"					"greenterror_scream"		
+		"Ability1"					"greenterror_rupture"		
 		"Ability3"					"greenterror_spikes"
 		"Ability4"					"greenterror_passive"
 		"Ability5"					"greenterror_bite"

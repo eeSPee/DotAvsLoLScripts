@@ -5,6 +5,7 @@
 	"Version"		"1"
 
 		
+				
 	//=================================================================================================================
 	// Rupture
 	//=================================================================================================================
@@ -43,8 +44,7 @@
 		
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------		
-		
-				
+						
 		 "OnSpellStart"
 		 {
 		   "CreateThinker"
@@ -59,12 +59,12 @@
 		   "Action"
 			{
 			
-					 "AttachEffect"
-						{
-						  "EffectName" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_cracks.vpcf"						  
-						  "EffectAttachType" "follow_origin"
-						  "Target" "POINT"
-						 }
+					 "CreateThinker"
+					   {
+						"ModifierName" "creature_rupture_area"
+						"Target" "POINT"
+						"Duration" "4"
+					   }
 				
 				 "ActOnTargets"
 					{
@@ -110,6 +110,12 @@
 								"apscale"				"1"
 								"Target"				"TARGET"
 							}
+							 "CreateThinker"
+						   {
+							"ModifierName" "creature_rupture_target"
+							"Target" "TARGET"
+							"Duration" "2"
+						   }
 						}
 					}
 			}
@@ -125,16 +131,58 @@
 			   {
 				"AttachEffect"
 						{
-						  "EffectName" "earthshaker_echoslam_start_cracks"
+						  "EffectName" "particles/units/heroes/hero_meepo/meepo_poof_debris.vpcf"
 						  "EffectAttachType" "follow_origin"
-						  "Target" "POINT"
+						  "Target" "TARGET"
+						 }
+				"AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_meepo/meepo_poof_dirt.vpcf"
+						  "EffectAttachType" "follow_origin"
+						  "Target" "TARGET"
+						 }
+				}
+			   }
+			   
+			    "creature_rupture_target"
+			  {		  
+			   "OnCreated"
+			   {
+				"AttachEffect"
+						{
+						  "EffectName" "particles\units\heroes\hero_lion\lion_spell_impale_hit_sparks.vpcf"
+						  "EffectAttachType" "follow_origin"
+						  "Target" "TARGET"
+						 }
+				"AttachEffect"
+						{
+						  "EffectName" "particles\units\heroes\hero_lion\lion_spell_impale_hit_spikes.vpcf"
+						  "EffectAttachType" "follow_origin"
+						  "Target" "TARGET"
+						 }
+				}
+			   }
+			   
+			    "creature_rupture_area"
+			  {		  
+			   "OnCreated"
+			   {
+				"AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"						  						  
+						  "Target" "TARGET"
+						  "EffectAttachType" "follow_origin"
+							"ControlPoints"
+							{
+								"00" "0 0 0"
+								"01" "%radius %radius %radius"
+							}
 						 }
 				}
 			   }
 			   
 				"rupture_slow"
 				{
-				 "EffectName" "generic_slowed"
 				 "IsDebuff"	 "1"
 				 "Properties"
 				 {
@@ -208,20 +256,16 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"   			"70 80 90 100 110"		
+		"AbilityManaCost"   			"70 80 90 100 110"
 		
-		"precache"
-		{
-			"particlefile"				"particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
-		}
 		"OnSpellStart"
 		{
 			"LinearProjectile"
 			{				
-				"MoveSpeed"			"2000"
-				"EffectName"			"particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+				"EffectName"			"particles/neutral_fx/satyr_hellcaller.vpcf"
+				"MoveSpeed"			"6000"				
 				"StartPosition"			"attach_attack1"
-				"FixedDistance"			"300"
+				"FixedDistance"			"600"
 				"StartRadius"			"80"
 				"EndRadius"				"400"
 				"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -260,7 +304,7 @@
 		"scream_silence"
 			{
 			"IsDebuff"	"1"
-			 "EffectName" "generic_silenced"
+			 "EffectName" "particles\generic_gameplay\generic_silence.vpcf"
 			 "EffectAttachType" "follow_overhead"
 			 "States"
 			 {
@@ -360,10 +404,9 @@
 				{
 					"LinearProjectile"
 						{							
-							"MoveSpeed"				"400"
-							"EffectName"			"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
-							"StartPosition"			"attach_attack1"
-							"FixedDistance"			"200"
+							"MoveSpeed"				"800"
+							"EffectName"			"particles/neutral_fx/satyr_hellcaller.vpcf"
+							"FixedDistance"			"400"
 							"StartRadius"			"200"
 							"EndRadius"				"200"
 							"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -371,6 +414,8 @@
 							"HasFrontalCone"		"0"
 							"ProvidesVision"		"0"
 							"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+							"Target"				"TARGET"
+							"StartPosition"			"CASTER"
 						}
 				}
 			}
@@ -479,6 +524,15 @@
 							"Function"				"AddStack"
 						}
 					}
+					"OnCreated"
+					{
+					"AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"						  						  
+						  "Target" "TARGET"
+						  "EffectAttachType" "follow_origin"
+						}
+						}
 				}
 			}
 			
@@ -512,11 +566,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"		
 		"AbilityTextureName" 			"nevermore_necromastery"
 		"MaxLevel"                      "1"
-		
-		"precache"
-		{
-			//"particle_folder"				"particles/units/heroes/hero_dragonknight.pcf"
-		}
 		
 
 		// Casting
@@ -558,6 +607,13 @@
 						"Target"				"CASTER"
 						"mana"					"%mana"
 					}	
+					
+					"AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_necrolyte/necrolyte_sadist.vpcf"						  						  
+						  "Target" "CASTER"
+						  "EffectAttachType" "follow_origin"
+						}
 				}
 			}			
 
@@ -3352,4 +3408,285 @@
 		"AbilityTextureName" 			"nevermore_necromastery"
 		"MaxLevel"                      "1"				
 	}
+	
+	//=================================================================================================================
+	// Corki
+	//=================================================================================================================
+	"gyro_bomb"
+	{
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"ID"							"9000"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"gyro_bomb"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"nyx_assassin_impale"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"MaxLevel"                      "5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"60 70 80 90 100"
+		
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------		
+		
+				
+		 "OnSpellStart"
+		 {
+		   
+			
+					 "AttachEffect"
+						{
+						  "EffectName" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_cracks.vpcf"						  
+						  "EffectAttachType" "follow_origin"
+						  "Target" "POINT"
+						 }
+							"LinearProjectile"
+							{				
+								"MoveSpeed"			"0"
+								"EffectName"			""
+								"StartPosition"			""
+								"FixedDistance"			"0"
+								"StartRadius"			"0"
+								"EndRadius"				"0"
+								"HasFrontalCone"		"0"
+								"ProvidesVision"		"1"
+								"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+								"Target"				"POINT"
+								"VisionRadius"			"%radius"
+								"ExpireTime"			"%duration"
+							}
+							
+				
+				 "ActOnTargets"
+					{
+						"Target"
+						{
+							"Center" "POINT"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"				"TARGET"
+								"Type"					"DAMAGE_TYPE_MAGICAL"
+								"Damage"				"%damage"
+							}					
+							"ApplyModifier"
+							{
+								"Target"				"TARGET"
+								"ModifierName"			"bomb_vision"
+								"Duration"					"%duration"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealMAGICdamagebasedonabilitypower"
+								"apscale"				"0.5"
+								"Target"				"TARGET"
+							}
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealMAGICdamagebasedonattackdamage"
+								"dmjscale"				"0.5"
+								"Target"				"TARGET"
+							}
+						}
+					}
+			
+		 }
+		 "Modifiers"
+		 {
+			   
+				"bomb_vision"
+				{
+				 "EffectName" "generic_slowed"
+				 "IsDebuff"	 "1"
+				 "States"
+				 {
+				   "MODIFIER_STATE_PROVIDES_VISION" "MODIFIER_STATE_VALUE_ENABLED"
+				 }			
+				}
+			}
+			//Special
+			// --------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"		"6"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius"		"600"
+				}		
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage"		"80 130 180 230 280"
+				}	
+			}
+
+	}
+	
+	"gyro_cannon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"9002"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_datadriven"
+		"AbilityName"					"gyro_cannon"
+		"OnCastbar"						"1"
+		"OnLearnbar"					"1"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"		
+		"AbilityTextureName" 			"bristleback_quill_spray"
+		"MaxLevel"                      "5"
+		
+		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName" "gatling_gun"
+				"Target"	   "CASTER"	
+				"Duration"	   "%duration"	
+			}
+		}
+
+			"OnProjectileHitUnit"
+			{
+				"DeleteOnHit"				"0"
+				"Damage"
+				{
+					"Target"				"TARGET"
+					"Type"					"DAMAGE_TYPE_MAGICAL"
+					"Damage"				"%damage"
+				}
+			"ApplyModifier"
+			{
+				"ModifierName" "gatling_gun_eat_armor"
+				"Target"	   "TARGET"	
+				"Duration"	   "%debuff"	
+			}
+				
+							"RunScript"
+							{
+								"ScriptFile"			"scripts/vscripts/abilities/general.lua"
+								"Function"				"dealMAGICdamagebasedonattackdamage"
+								"apscale"				"0.3"
+								"Target"				"TARGET"
+							}
+			}
+			
+		"Modifiers"
+		{
+			"gatling_gun"
+			{
+				"IsHidden"	 "1"
+				"ThinkInterval" 	"0.5"
+				"OnThinkInterval"
+				{
+					"LinearProjectile"
+						{							
+							"MoveSpeed"				"9999"
+							"EffectName"			""
+							"StartPosition"			"attach_attack1"
+							"FixedDistance"			"%dist"
+							"StartRadius"			"100"
+							"EndRadius"				"%rad"
+							"TargetTeams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"TargetTypes"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"HasFrontalCone"		"1"
+							"ProvidesVision"		"0"
+							"TargetFlags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+						}
+				}
+			}
+			"gatling_gun_eat_armor"
+			{
+			"IsDebuff"	"1"
+			 "EffectName" "generic_silenced"
+			 "EffectAttachType" "follow_overhead"
+			 "Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			 "Properties"
+			 {
+			   "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor"
+			 }			
+			}
+
+		}
+		"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage" "10 16 22 28 34"					
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"dist" "500"					
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"rad" "150"					
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration" "4"					
+				}
+				"05"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"debuff" "6"					
+				}
+				"06"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"armor" "-1 -2 -3 -4 -5"					
+				}
+			}
+				
+	}
+	
 }
